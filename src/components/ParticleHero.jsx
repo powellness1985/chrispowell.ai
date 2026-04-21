@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import TerminalAnimation from './TerminalAnimation';
+import TechStack from './TechStack';
 
 const PILLS = [
   'Always Learning',
@@ -220,6 +222,7 @@ export default function ParticleHero({ onComplete }) {
 
   return (
     <section id="top" className="relative min-h-screen overflow-hidden">
+      <TerminalAnimation revealContent={revealContent} />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
@@ -288,6 +291,7 @@ export default function ParticleHero({ onComplete }) {
                 </span>
               ))}
             </div>
+            <TechStack revealContent={revealContent} />
           </div>
         </div>
       </div>
