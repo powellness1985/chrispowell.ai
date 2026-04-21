@@ -230,7 +230,7 @@ export default function ParticleHero({ onComplete }) {
       />
 
       <div
-        className={`absolute inset-0 z-10 flex items-center justify-center px-6 pt-36 lg:pt-32 transition-opacity duration-700 ${
+        className={`absolute inset-0 z-10 flex items-center justify-center px-6 pt-36 lg:pt-48 transition-opacity duration-700 ${
           revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
