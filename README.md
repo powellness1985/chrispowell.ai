@@ -42,9 +42,49 @@ vercel dev
 
 You will also need a local `.env` file with `ANTHROPIC_API_KEY` set (see `.env.example`).
 
-## Filling in the system prompt
+## The system prompt (important — NOT in git)
 
-Before the chat experience will represent you well, replace the placeholder in [`api/system-prompt.js`](api/system-prompt.js). The file exports a single string constant `SYSTEM_PROMPT` with scaffolded sections: **Identity**, **Career history**, **Projects**, **Philosophy & approach**, and **Guardrails**. Replace the entire file contents with your own copy — the rest of the app will pick it up automatically.
+The real system prompt for the chat agent contains personal career
+content, PII policy, and confidential claim lists. It **must not** be
+committed to this repo. Only the sanitized template
+[`api/system-prompt.example.js`](api/system-prompt.example.js) is tracked.
+
+`api/chat.js` reads the prompt from the `SYSTEM_PROMPT` environment
+variable at request time. Two formats are accepted:
+
+- **base64-encoded** — recommended for local `.env` (no multi-line
+  quoting headaches)
+- **plain text (multi-line)** — works fine in the Vercel dashboard,
+  whose env-var editor preserves newlines
+
+`api/chat.js` auto-detects which format was used.
+
+### Local setup
+
+1. Create `api/system-prompt.js` locally (it is gitignored). Use
+   [`api/system-prompt.example.js`](api/system-prompt.example.js) as the
+   structural template and fill in real content.
+2. Encode and inject into `.env`:
+   ```bash
+   node -e "import('./api/system-prompt.js').then(m => \
+     console.log('SYSTEM_PROMPT=' + Buffer.from(m.SYSTEM_PROMPT) \
+     .toString('base64')))" >> .env
+   ```
+   (Open `.env` afterward and delete any older `SYSTEM_PROMPT=` line.)
+3. Restart `vercel dev` so it picks up the change.
+
+Whenever you edit the prompt locally, re-run step 2 and restart the dev
+server.
+
+### Vercel production setup
+
+1. In the Vercel dashboard → **Settings → Environment Variables**, add
+   a new variable `SYSTEM_PROMPT`.
+2. Paste the full prompt content as plain text (Vercel's textarea
+   accepts multi-line). Or paste the base64-encoded version — both work.
+3. Apply to **Production**, **Preview**, and **Development** (if you use
+   `vercel env pull` locally).
+4. Redeploy. The function will pick up the new value on next invocation.
 
 ## Deploy to Vercel
 
