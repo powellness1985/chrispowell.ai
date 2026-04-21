@@ -115,6 +115,17 @@ html {
     animation: glitch-scan 0.3s ease-out;
   }
 
+  /* Mobile: active state feedback */
+  @media (max-width: 767px) {
+    .card {
+      @apply active:bg-white/[0.04] active:border-cyan/50;
+    }
+
+    .card:active::before {
+      animation: glitch-scan 0.2s ease-out;
+    }
+  }
+
   @keyframes glitch-scan {
     0% {
       opacity: 0;

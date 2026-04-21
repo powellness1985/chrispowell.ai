@@ -6,6 +6,7 @@ import Projects from './components/Projects.jsx';
 import AlsoMe from './components/AlsoMe.jsx';
 import ChatInterface from './components/ChatInterface.jsx';
 import Footer from './components/Footer.jsx';
+import MobileFAB from './components/MobileFAB.jsx';
 
 export default function App() {
   const [heroDone, setHeroDone] = useState(false);
@@ -33,6 +34,7 @@ export default function App() {
       <AlsoMe />
       <ChatInterface />
       <Footer />
+      <MobileFAB />
     </div>
   );
 }
