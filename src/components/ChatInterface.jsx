@@ -290,10 +290,28 @@ export default function ChatInterface() {
 
   return (
     <section id="chat" className="section">
-      <h2 className="h-section">How I Think</h2>
-      <p className="mt-4 sub">
-        Ask me anything. (Well, AI me.)
-      </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="h-section">How I Think</h2>
+          <p className="mt-4 sub">
+            Ask me anything. (Well, AI me.)
+          </p>
+        </div>
+        {!empty && (
+          <button
+            onClick={() => {
+              setMessages([]);
+              setInput('');
+              setError('');
+              setAudience('Curious');
+            }}
+            className="btn-ghost text-xs whitespace-nowrap"
+            aria-label="Start new chat"
+          >
+            New Chat
+          </button>
+        )}
+      </div>
 
       <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
         <div
