@@ -259,9 +259,9 @@ export default function ParticleHero({ onComplete }) {
               }`}
               style={d(150)}
             >
-              Same brain.
+              I lead people.
               <br />
-              Different materials.
+              Always learning.
             </h1>
 
             <p
