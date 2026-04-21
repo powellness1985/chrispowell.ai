@@ -48,8 +48,6 @@ function Card({ item, featured = false }) {
           : 'hover:border-white/20'
       } ${featured ? 'sm:col-span-2' : ''}`}
     >
-      <ImagePlaceholder label={item.imageSlot} aspect={item.aspect} />
-
       <div className="flex flex-col gap-2">
         <span className="text-[10px] font-mono uppercase tracking-wider text-cyan/80">
           {item.tag}
