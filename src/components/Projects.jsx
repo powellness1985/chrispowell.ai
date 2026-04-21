@@ -3,8 +3,8 @@ import { projects } from '../data/projects.js';
 export default function Projects() {
   return (
     <section id="projects" className="section">
-      <h2 className="h-section">What I&rsquo;m Building</h2>
-      <p className="mt-4 sub">These are not case studies. They are things I actually made.</p>
+      <h2 className="h-section">Working On Right Now</h2>
+      <p className="mt-4 sub">Excited about a lot—these are some of the things beyond the sketch phase.</p>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         {projects.map((p) => {
