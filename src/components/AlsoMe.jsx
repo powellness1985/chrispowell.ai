@@ -112,10 +112,6 @@ export default function AlsoMe() {
           how do I make this better for the people it affects?
         </p>
       </div>
-
-      <p className="mt-6 text-xs text-ink/40 text-center">
-        This section gets updated. Come back.
-      </p>
     </section>
   );
 }
