@@ -44,7 +44,7 @@ export default function TerminalAnimation({ revealContent }) {
     <>
       {/* Desktop: floating terminal top-right */}
       <div
-        className={`hidden lg:block fixed top-20 right-10 z-20 transition-all duration-1000 ${
+        className={`hidden lg:block fixed top-28 right-10 z-20 transition-all duration-1000 ${
           revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -62,9 +62,9 @@ export default function TerminalAnimation({ revealContent }) {
         </div>
       </div>
 
-      {/* Mobile: inline terminal inline below hero text */}
+      {/* Mobile: terminal positioned after hero content, below navigation safe zone */}
       <div
-        className={`lg:hidden mt-6 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
+        className={`lg:hidden absolute bottom-24 left-6 right-6 z-5 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
           revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         style={{
