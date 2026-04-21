@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0f;
+  color: #e8e8f0;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Subtle dot grid pattern behind everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(232, 232, 240, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Smooth scrolling, but respect reduced motion */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(0, 212, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.15);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.3);
+}
+
+@layer components {
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10
+      text-ink/80 hover:text-ink hover:border-cyan/40 transition-all duration-300;
+  }
+
+  .pill {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+      border border-cyan/30 text-cyan bg-cyan/5;
+  }
+
+  .section {
+    @apply relative max-w-6xl mx-auto px-6 md:px-10 py-24 md:py-32;
+  }
+
+  .h-section {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight text-ink;
+  }
+
+  .sub {
+    @apply text-ink/60 text-base md:text-lg;
+  }
+
+  .card {
+    @apply relative rounded-2xl border border-white/10 bg-white/[0.02] p-6
+      transition-all duration-300 hover:border-cyan/40 hover:-translate-y-1
+      hover:shadow-cyan-glow;
+  }
+}
