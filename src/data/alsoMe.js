@@ -41,13 +41,6 @@ export const alsoMe = [
     aspect: 'aspect-video',
   },
   {
-    title: 'UV Printing',
-    tag: 'UV printing · Direct to object',
-    line: "Full color printing directly onto objects. Combine with a 3D print and things get interesting fast.",
-    imageSlot: 'square',
-    aspect: 'aspect-square',
-  },
-  {
     title: 'Home Lab',
     tag: 'Home lab · Segmented and monitored',
     line: "Segmented network, device monitoring, automation pipelines. My home network has better documentation than some enterprise systems I have inherited.",

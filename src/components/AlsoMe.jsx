@@ -78,7 +78,7 @@ export default function AlsoMe() {
       <h2 className="h-section">Also Me</h2>
       <p className="mt-4 sub">When there&rsquo;s no agenda, this is what happens.</p>
       <p className="mt-2 text-sm text-ink/50">
-        The same curiosity that shows up at work shows up here too.
+        The same curiosity that shows up at work shows up here too. These are some of the highlights.
       </p>
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 auto-rows-auto">

@@ -4,12 +4,12 @@ import ReactMarkdown from 'react-markdown';
 const MAX_CHARS = 500;
 
 const SUGGESTED = [
-  'What gets you excited about AI right now?',
-  'How does the maker side connect to how you lead?',
+  "What's Chris's take on AI right now?",
+  'How does the maker side connect to leadership?',
   'What is Powell Family Lights and how does it work?',
-  'What would you build if someone gave you a free weekend?',
-  'Why did you build this site?',
-  'Be honest, how many cameras is too many cameras?',
+  'What would Chris build with a free weekend?',
+  'Why was this site built?',
+  'Be honest: how many cameras is too many cameras?',
 ];
 
 const markdownComponents = {
