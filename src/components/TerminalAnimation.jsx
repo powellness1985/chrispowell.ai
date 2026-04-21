@@ -62,9 +62,9 @@ export default function TerminalAnimation({ revealContent }) {
         </div>
       </div>
 
-      {/* Mobile: terminal positioned near top but below navigation */}
+      {/* Mobile portrait: terminal positioned near top but below navigation */}
       <div
-        className={`lg:hidden absolute top-20 left-6 right-6 z-5 max-w-xs rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
+        className={`lg:hidden landscape:hidden absolute top-20 left-6 right-6 z-5 max-w-xs rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
           revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         style={{
