@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import rehypeSanitize from 'rehype-sanitize';
 
 const MAX_CHARS = 500;
 
@@ -161,7 +162,10 @@ export default function ChatInterface() {
                   </div>
                 ) : (
                   <div className="max-w-[90%] border-l-2 border-cyan pl-4 py-0.5 text-ink/90">
-                    <ReactMarkdown components={markdownComponents}>
+                    <ReactMarkdown
+                      components={markdownComponents}
+                      rehypePlugins={[rehypeSanitize]}
+                    >
                       {m.content}
                     </ReactMarkdown>
                   </div>

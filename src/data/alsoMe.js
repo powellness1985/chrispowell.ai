@@ -29,7 +29,7 @@ export const alsoMe = [
   {
     title: '3D Printing',
     tag: 'Multi-color 3D printing · Among other builds',
-    line: "Multi-color, multi-plate builds. If Waverly sees a character she likes, I will probably have it printed by the weekend. Functional parts too, but mostly Waverly wins.",
+    line: "Multi-color, multi-plate builds. If my daughter sees a character she likes, I will probably have it printed by the weekend. Functional parts too, but mostly she wins.",
     imageSlot: 'square',
     aspect: 'aspect-square',
   },

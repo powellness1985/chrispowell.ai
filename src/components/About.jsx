@@ -52,7 +52,7 @@ const TIMELINE = [
     org: 'Indeed',
     role: 'Director, Workplace Experience',
     detail:
-      'People Ops org. A global team of 40+ spanning 20+ offices. Pillars: office ops, events & perks, operational support, HSE, and AI Enablement. Outside the day job: built this site one evening in Claude Code, shipped DadOps Bot for Waverly, run workshops, and lean into whatever comes next. The curiosity never turns off.',
+      'People Ops org. A global team of 40+ spanning 20+ offices. Pillars: office ops, events & perks, operational support, HSE, and AI Enablement. Outside the day job: built this site one evening in Claude Code, shipped DadOps Bot for my daughter, run workshops, and lean into whatever comes next. The curiosity never turns off.',
   },
 ];
 
@@ -91,7 +91,7 @@ export default function About() {
         <div className="text-ink/80 text-base md:text-lg leading-relaxed space-y-4">
           <p>
             I&rsquo;m Chris Powell. Coast Guard veteran. Apple Genius. Nearly a decade at Indeed.
-            Dad to Waverly. Owner of too many cameras and not enough hours in the day.
+            Dad to my daughter. Owner of too many cameras and not enough hours in the day.
           </p>
           <p>
             The through-line across all of it is not the titles or the companies. It is this:
@@ -99,7 +99,7 @@ export default function About() {
             people they affect, and then go build it. At work that looks like AI enablement
             programs and global operations frameworks. At home it looks like a backyard shop,
             synchronized holiday light shows, projection-mapped Halloween experiences, and a
-            Telegram bot that makes sure I do not miss anything important for Waverly.
+            Telegram bot that makes sure I do not miss anything important for my daughter.
           </p>
           <p className="text-ink font-semibold">The work is different. The question is always the same.</p>
           <p>
