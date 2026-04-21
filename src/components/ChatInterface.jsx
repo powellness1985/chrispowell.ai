@@ -51,9 +51,28 @@ const markdownComponents = {
 };
 
 function FeedbackWidget({ messageIndex, assistantContent, onSubmit }) {
+  const [reaction, setReaction] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [feedback, setFeedback] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  const handleReaction = async (thumbs) => {
+    try {
+      await fetch('/api/analytics/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: thumbs === 'up' ? '👍' : '👎',
+          chatContext: assistantContent.substring(0, 100),
+          sentiment: thumbs === 'up' ? 'positive' : 'negative',
+        }),
+      });
+      setReaction(thumbs);
+      setTimeout(() => setReaction(null), 2000);
+    } catch {
+      // Silently fail analytics
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,14 +100,43 @@ function FeedbackWidget({ messageIndex, assistantContent, onSubmit }) {
   };
 
   return (
-    <div className="mt-2 flex gap-2 text-xs text-ink/50">
-      {!isOpen && !submitted && (
+    <div className="mt-2 flex gap-3 text-xs text-ink/50 items-center">
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => handleReaction('up')}
+          disabled={reaction === 'up'}
+          className={`transition-colors ${
+            reaction === 'up'
+              ? 'text-cyan'
+              : 'hover:text-cyan disabled:cursor-not-allowed'
+          }`}
+          aria-label="Helpful"
+        >
+          👍
+        </button>
+        <button
+          type="button"
+          onClick={() => handleReaction('down')}
+          disabled={reaction === 'down'}
+          className={`transition-colors ${
+            reaction === 'down'
+              ? 'text-cyan'
+              : 'hover:text-cyan disabled:cursor-not-allowed'
+          }`}
+          aria-label="Not helpful"
+        >
+          👎
+        </button>
+      </div>
+
+      {!isOpen && !submitted && reaction === null && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
           className="hover:text-cyan transition-colors"
         >
-          Give feedback
+          More feedback?
         </button>
       )}
       {isOpen && (
