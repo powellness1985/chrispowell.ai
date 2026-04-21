@@ -5,9 +5,11 @@ const MAX_CHARS = 500;
 
 const SUGGESTED = [
   'What gets you excited about AI right now?',
-  'How do you approach something you have never done before?',
+  'How does the maker side connect to how you lead?',
+  'What is Powell Family Lights and how does it work?',
+  'What would you build if someone gave you a free weekend?',
   'Why did you build this site?',
-  'What does DadOps do and why did you build it?',
+  'Be honest, how many cameras is too many cameras?',
 ];
 
 const markdownComponents = {

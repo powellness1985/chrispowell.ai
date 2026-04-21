@@ -6,12 +6,13 @@ const RESUME_URL =
 const LINKS = [
   { label: 'About', href: '#about', section: 'about' },
   { label: 'Projects', href: '#projects', section: 'projects' },
+  { label: 'Also Me', href: '#also-me', section: 'also-me' },
   { label: 'Chat', href: '#chat', section: 'chat' },
   { label: 'Background', href: RESUME_URL, external: true },
   { label: 'Contact', href: '#contact', section: 'contact' },
 ];
 
-const OBSERVED_IDS = ['about', 'projects', 'chat', 'contact'];
+const OBSERVED_IDS = ['about', 'projects', 'also-me', 'chat', 'contact'];
 
 export default function Navigation({ visible = true }) {
   const [scrolled, setScrolled] = useState(false);

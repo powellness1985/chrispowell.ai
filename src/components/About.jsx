@@ -90,19 +90,25 @@ export default function About() {
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         <div className="text-ink/80 text-base md:text-lg leading-relaxed space-y-4">
           <p>
-            I&rsquo;m Chris Powell. I&rsquo;ve spent 22 years at the intersection of technology,
-            operations, and people. In the Coast Guard. At the FAA. At Apple. At a couple of
-            startups. And nearly a decade at Indeed. But the thread that runs through all of
-            it isn&rsquo;t the titles or the companies. It&rsquo;s this: I don&rsquo;t wait
-            for things to catch up to me. I go learn it, build it, and bring people along.
+            I&rsquo;m Chris Powell. Coast Guard veteran. Apple Genius. Nearly a decade at Indeed.
+            Single dad to Waverly. Owner of too many cameras and not enough hours in the day.
           </p>
           <p>
-            This site is an example of that. I built it from scratch. React, Vite, the Claude
-            API, all of it. Not because I had to, but because the idea excited me and I wanted
-            to see if I could make it real. That&rsquo;s how I&rsquo;ve always worked.
-            That&rsquo;s how I always will.
+            The through-line across all of it is not the titles or the companies. It is this:
+            I ask why things are the way they are, figure out how to make them better for the
+            people they affect, and then go build it. At work that looks like AI enablement
+            programs and global operations frameworks. At home it looks like a 1,000 square
+            foot shop, synchronized holiday light shows, projection-mapped Halloween
+            experiences, and a Telegram bot that makes sure I do not miss anything important
+            for Waverly.
           </p>
-          <p className="text-ink/60">
+          <p className="text-ink font-semibold">Same brain. Different materials.</p>
+          <p>
+            I built this site the same way, one evening in Claude Code because the idea excited
+            me and I wanted to see if I could make it real. That is how I have always worked.
+            That is how I always will.
+          </p>
+          <p className="text-ink/60 pt-2">
             Curious how I think about something?{' '}
             <button
               type="button"
