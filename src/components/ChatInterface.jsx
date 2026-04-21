@@ -50,6 +50,70 @@ const markdownComponents = {
     ),
 };
 
+function FeedbackWidget({ messageIndex, assistantContent, onSubmit }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [feedback, setFeedback] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!feedback.trim()) return;
+
+    try {
+      await fetch('/api/analytics/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: feedback.trim(),
+          chatContext: assistantContent.substring(0, 100),
+          sentiment: 'constructive',
+        }),
+      });
+      setSubmitted(true);
+      setFeedback('');
+      setTimeout(() => {
+        setSubmitted(false);
+        setIsOpen(false);
+      }, 2000);
+    } catch {
+      // Silently fail analytics
+    }
+  };
+
+  return (
+    <div className="mt-2 flex gap-2 text-xs text-ink/50">
+      {!isOpen && !submitted && (
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          className="hover:text-cyan transition-colors"
+        >
+          Give feedback
+        </button>
+      )}
+      {isOpen && (
+        <form onSubmit={handleSubmit} className="flex gap-2 flex-1 max-w-xs">
+          <textarea
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            placeholder="What could be better?"
+            rows={1}
+            className="flex-1 resize-none rounded px-2 py-1 bg-white/5 border border-white/10 text-xs text-ink placeholder:text-ink/30 focus:border-cyan focus:outline-none"
+          />
+          <button
+            type="submit"
+            disabled={!feedback.trim()}
+            className="px-3 py-1 rounded bg-cyan/20 text-cyan text-xs font-semibold hover:bg-cyan/30 disabled:opacity-50 transition-colors"
+          >
+            Send
+          </button>
+        </form>
+      )}
+      {submitted && <span className="text-cyan">Thanks</span>}
+    </div>
+  );
+}
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -73,6 +137,15 @@ export default function ChatInterface() {
     setMessages((m) => [...m, { role: 'user', content: trimmed }]);
     setInput('');
     setIsTyping(true);
+
+    // Log question to analytics (non-blocking)
+    fetch('/api/analytics/question', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: trimmed }),
+    }).catch(() => {
+      // Silently fail analytics
+    });
 
     try {
       const res = await fetch('/api/chat', {
@@ -171,19 +244,30 @@ export default function ChatInterface() {
                   </div>
                 )}
               </div>
-              {m.role === 'assistant' && m.followups?.length > 0 && (
-                <div className="mt-3 ml-6 flex flex-wrap gap-2">
-                  {m.followups.map((f) => (
-                    <button
-                      key={f}
-                      type="button"
-                      onClick={() => send(f)}
-                      disabled={isTyping}
-                      className="text-xs px-3 py-1.5 rounded-full border border-cyan/30 text-cyan/90 hover:bg-cyan/10 hover:border-cyan/60 hover:text-cyan transition-all disabled:opacity-40 disabled:cursor-not-allowed text-left"
-                    >
-                      {f}
-                    </button>
-                  ))}
+              {m.role === 'assistant' && (
+                <div className="mt-2 ml-6">
+                  <FeedbackWidget
+                    messageIndex={i}
+                    assistantContent={m.content}
+                    onSubmit={(feedback) => {
+                      // Feedback submission handled in FeedbackWidget
+                    }}
+                  />
+                  {m.followups?.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {m.followups.map((f) => (
+                        <button
+                          key={f}
+                          type="button"
+                          onClick={() => send(f)}
+                          disabled={isTyping}
+                          className="text-xs px-3 py-1.5 rounded-full border border-cyan/30 text-cyan/90 hover:bg-cyan/10 hover:border-cyan/60 hover:text-cyan transition-all disabled:opacity-40 disabled:cursor-not-allowed text-left"
+                        >
+                          {f}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
