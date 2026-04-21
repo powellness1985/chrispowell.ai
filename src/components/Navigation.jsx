@@ -8,7 +8,6 @@ const LINKS = [
   { label: 'Projects', href: '#projects', section: 'projects' },
   { label: 'Also Me', href: '#also-me', section: 'also-me' },
   { label: 'Chat', href: '#chat', section: 'chat' },
-  { label: 'Background', href: RESUME_URL, external: true },
   { label: 'Contact', href: '#contact', section: 'contact' },
 ];
 
