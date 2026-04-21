@@ -87,11 +87,15 @@ export default function TerminalAnimation({ revealContent }) {
     <>
       {/* Desktop: floating terminal top-right */}
       <div
-        className={`hidden lg:block fixed top-28 right-10 z-20 transition-all duration-1000 ${
+        className={`hidden lg:block fixed top-16 right-10 z-30 transition-all duration-1000 ${
           revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-4 font-mono text-sm shadow-lg shadow-cyan/10">
+        {/* Background box layer - stays behind hero image */}
+        <div className="absolute inset-0 w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 shadow-lg shadow-cyan/10 pointer-events-none z-0" />
+
+        {/* Text content layer - floats above hero image */}
+        <div className="relative z-10 w-72 rounded-lg p-4 font-mono text-sm">
           <div className="flex gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-red-500/70" />
             <div className="w-2 h-2 rounded-full bg-yellow-400/70" />
