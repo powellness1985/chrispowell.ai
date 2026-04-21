@@ -66,7 +66,7 @@ export default function ChatInterface() {
     if (!trimmed || trimmed.length > MAX_CHARS || isTyping) return;
 
     setError('');
-    const history = messages;
+    const history = messages.map(({ role, content }) => ({ role, content }));
     setMessages((m) => [...m, { role: 'user', content: trimmed }]);
     setInput('');
     setIsTyping(true);
@@ -81,7 +81,14 @@ export default function ChatInterface() {
       if (!res.ok) {
         throw new Error(data.error || `Request failed (${res.status}).`);
       }
-      setMessages((m) => [...m, { role: 'assistant', content: data.response }]);
+      setMessages((m) => [
+        ...m,
+        {
+          role: 'assistant',
+          content: data.response,
+          followups: Array.isArray(data.followups) ? data.followups : [],
+        },
+      ]);
     } catch (err) {
       setError(
         err?.message ||
@@ -140,21 +147,37 @@ export default function ChatInterface() {
           )}
 
           {messages.map((m, i) => (
-            <div
-              key={i}
-              className={`mb-4 flex ${
-                m.role === 'user' ? 'justify-end' : 'justify-start'
-              }`}
-            >
-              {m.role === 'user' ? (
-                <div className="max-w-[85%] rounded-xl bg-purple/80 text-white px-4 py-2.5 leading-relaxed">
-                  {m.content}
-                </div>
-              ) : (
-                <div className="max-w-[90%] border-l-2 border-cyan pl-4 py-0.5 text-ink/90">
-                  <ReactMarkdown components={markdownComponents}>
+            <div key={i} className="mb-4">
+              <div
+                className={`flex ${
+                  m.role === 'user' ? 'justify-end' : 'justify-start'
+                }`}
+              >
+                {m.role === 'user' ? (
+                  <div className="max-w-[85%] rounded-xl bg-purple/80 text-white px-4 py-2.5 leading-relaxed">
                     {m.content}
-                  </ReactMarkdown>
+                  </div>
+                ) : (
+                  <div className="max-w-[90%] border-l-2 border-cyan pl-4 py-0.5 text-ink/90">
+                    <ReactMarkdown components={markdownComponents}>
+                      {m.content}
+                    </ReactMarkdown>
+                  </div>
+                )}
+              </div>
+              {m.role === 'assistant' && m.followups?.length > 0 && (
+                <div className="mt-3 ml-6 flex flex-wrap gap-2">
+                  {m.followups.map((f) => (
+                    <button
+                      key={f}
+                      type="button"
+                      onClick={() => send(f)}
+                      disabled={isTyping}
+                      className="text-xs px-3 py-1.5 rounded-full border border-cyan/30 text-cyan/90 hover:bg-cyan/10 hover:border-cyan/60 hover:text-cyan transition-all disabled:opacity-40 disabled:cursor-not-allowed text-left"
+                    >
+                      {f}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
@@ -216,8 +239,8 @@ export default function ChatInterface() {
       </div>
 
       <p className="mt-5 text-xs text-ink/40 text-center leading-relaxed max-w-2xl mx-auto">
-        Powered by Claude Haiku (Anthropic) · Built by Chris Powell · This is AI — please
-        verify anything important directly with Chris at{' '}
+        Powered by Claude Haiku (Anthropic) · Built by Chris Powell · This is AI,
+        please verify anything important directly with Chris at{' '}
         <a
           href="mailto:hello@chrispowell.ai"
           className="text-cyan hover:underline"
