@@ -32,7 +32,7 @@ const AUDIENCES = {
 };
 const AUDIENCE_ORDER = ['Curious', 'Recruiter', 'Engineer', 'Neighbor'];
 const AUDIENCE_LABELS = {
-  Curious: 'Curious',
+  Curious: 'Just Curious',
   Recruiter: 'a Recruiter',
   Engineer: 'an Engineer',
   Neighbor: 'a Neighbor',
