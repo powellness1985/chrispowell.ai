@@ -31,7 +31,7 @@ const TIMELINE = [
     org: 'Bypass Mobile',
     role: 'Senior Services Manager',
     detail:
-      'Built a national support department from scratch at a mobile-POS startup. Tablet-based POS at scale: Staples Center, Coachella, PGA events. Project-managed new installs, ran on-call for live events, implemented the ticketing stack. Learned what "on-call" really means when the game starts at 7pm.',
+      'Built a national support department at a mobile-POS startup. Tablet-based POS at scale: Staples Center, Coachella, PGA events. Project-managed new installs, ran on-call for live events, implemented the ticketing stack. Learned what "on-call" really means when the game starts at 7pm.',
   },
   {
     year: '2015',
