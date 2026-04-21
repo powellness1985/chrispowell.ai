@@ -45,14 +45,14 @@ const TIMELINE = [
     org: 'Indeed',
     role: 'IT Manager → Senior Manager → Director, IT Solutions',
     detail:
-      'West Coast IT, then APAC with ~4 months on-site rebuilding the Japan team, then Interim Global, then permanent Director of IT Solutions. Peak team of 224 (157 FTE + 67 contractors) serving ~10,000 employees. Shipped Indeed\'s first internal AI bot, the AI-powered ticketing platform, the first Virtual Service Desk (pandemic-era), and multiple M&A IT integrations. Improved service resolution speed 20%+.',
+      'West Coast IT, then APAC with ~4 months on-site rebuilding the Japan team, then Interim Global, then Director of IT Solutions. Led a large global IT org serving ~10,000 employees. Shipped Indeed\'s first internal AI bot, an AI-powered ticketing platform, the first Virtual Service Desk (pandemic-era), and multiple M&A IT integrations. Wrote a bash script for network troubleshooting that is still a standard tool for the team.',
   },
   {
     year: 'Now',
     org: 'Indeed',
     role: 'Director, Workplace Experience',
     detail:
-      'People Ops org. 70+ FTEs and contractors, $50M+ global budget, 20+ offices. Pillars: office ops, events & perks, operational support, HSE, and AI Enablement. FY2025-H1 rating of 5 (highest). Called out as "a key driver of AI within the People Team" for pioneering AI adoption. Outside the day job: building this site one evening in Claude Code, shipping DadOps Bot for Waverly, running workshops, and leaning into whatever comes next. The curiosity never turns off.',
+      'People Ops org. A global team of 40+ spanning 20+ offices. Pillars: office ops, events & perks, operational support, HSE, and AI Enablement. Outside the day job: built this site one evening in Claude Code, shipped DadOps Bot for Waverly, run workshops, and lean into whatever comes next. The curiosity never turns off.',
   },
 ];
 
@@ -85,39 +85,25 @@ export default function About() {
 
   return (
     <section id="about" ref={rootRef} className="section">
-      <h2 className="h-section">The Story So Far</h2>
+      <h2 className="h-section">The Arc</h2>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         <div className="text-ink/80 text-base md:text-lg leading-relaxed space-y-4">
           <p>
-            I'm Chris. I'm a systems-driven IT and operations leader based in Buda, Texas,
-            coming up on ten years at Indeed. Current day job: Director of Workplace Experience,
-            running a team of 70+ across 20+ offices and a $50M+ budget. But the title on the
-            business card isn't really the point. This page is about what happens when a curious
-            person with a laptop decides to see what's possible.
+            I&rsquo;m Chris Powell. I&rsquo;ve spent 22 years at the intersection of technology,
+            operations, and people. In the Coast Guard. At the FAA. At Apple. At a couple of
+            startups. And nearly a decade at Indeed. But the thread that runs through all of
+            it isn&rsquo;t the titles or the companies. It&rsquo;s this: I don&rsquo;t wait
+            for things to catch up to me. I go learn it, build it, and bring people along.
           </p>
           <p>
-            This site is a good example. I built it one evening with Claude Code and a laptop,
-            because I wanted to know how. Some people would call that vibe coding. I call it
-            leaning in. The AI you can chat with below runs on Anthropic's Claude, a Vercel
-            function I wrote, and a system prompt I tuned myself. It's a hands-on answer to the
-            question "what does applied AI actually look like in your work?"
-          </p>
-          <p>
-            I think in systems. Coast Guard electronics. FAA navigation. Apple enterprise.
-            Bypass Mobile at Staples Center and Coachella. Then the last decade at Indeed,
-            growing from a regional IT manager to the Director seat. The through-line is
-            simple: I like building things that make the hard stuff easier. Triage bots.
-            Workshop series. Org designs that give teams room to breathe. A personal bot that
-            helps me not miss what matters for my daughter Waverly.
-          </p>
-          <p>
-            The "now" isn't an exit plan. It's the posture. Wherever I am, I'm going to keep
-            leaning into curiosity and building what's next, personally and professionally.
-            This site is part of that. The stretching doesn't stop.
+            This site is an example of that. I built it from scratch. React, Vite, the Claude
+            API, all of it. Not because I had to, but because the idea excited me and I wanted
+            to see if I could make it real. That&rsquo;s how I&rsquo;ve always worked.
+            That&rsquo;s how I always will.
           </p>
           <p className="text-ink/60">
-            Want to know what working with me looks like?{' '}
+            Curious how I think about something?{' '}
             <button
               type="button"
               onClick={scrollToChat}
@@ -125,7 +111,11 @@ export default function About() {
             >
               Ask the chat below
             </button>
-            , or email me: <a href="mailto:hello@chrispowell.ai" className="text-cyan hover:underline">hello@chrispowell.ai</a>.
+            , or just email me:{' '}
+            <a href="mailto:hello@chrispowell.ai" className="text-cyan hover:underline">
+              hello@chrispowell.ai
+            </a>
+            .
           </p>
         </div>
 

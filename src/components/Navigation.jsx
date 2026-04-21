@@ -7,7 +7,7 @@ const LINKS = [
   { label: 'About', href: '#about', section: 'about' },
   { label: 'Projects', href: '#projects', section: 'projects' },
   { label: 'Chat', href: '#chat', section: 'chat' },
-  { label: 'Resume', href: RESUME_URL, external: true },
+  { label: 'Background', href: RESUME_URL, external: true },
   { label: 'Contact', href: '#contact', section: 'contact' },
 ];
 

@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/5 text-center text-xs text-ink/40">
-          © 2025 Chris Powell · Built with React, Vite &amp; Claude AI · chrispowell.ai
+          Built by Chris Powell · Always learning, always building · chrispowell.ai
         </div>
       </div>
     </footer>

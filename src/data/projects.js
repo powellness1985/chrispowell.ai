@@ -4,14 +4,14 @@ export const projects = [
     title: 'chrispowell.ai',
     tag: 'Live · React + Claude API',
     description:
-      'This site. Built from scratch with React, Vite, Tailwind, and the Anthropic Claude API. Designed, coded, and deployed independently as a proof of concept. The AI chat interface you can use below is part of it.',
+      'This site. I built it from scratch one evening with Claude Code and a laptop. React, Vite, Tailwind, the Anthropic Claude API, and a Vercel function I wrote. The AI you can chat with below is part of it. I wanted to see if I could make it real.',
     link: '#chat',
   },
   {
     title: 'DadOps Bot',
     tag: 'Personal · Python + Telegram + Claude',
     description:
-      'A personal AI agent that monitors Gmail for family emails, extracts events using Claude, and manages two Google Calendars via Telegram. Includes a local SQLite memory database that grows over time. Built to solve a real problem: not missing anything important for my daughter Waverly.',
+      'A personal AI agent in Python that watches Gmail for family emails, pulls out events with Claude, sends me organized digests over Telegram, and syncs two Google Calendars once I confirm. Keeps a local SQLite memory that grows over time. I built it because I did not want to miss anything important for my daughter Waverly.',
     // TODO: Replace with real GitHub link
     link: '#',
   },
@@ -19,7 +19,7 @@ export const projects = [
     title: 'Proactive AI Enablement',
     tag: 'Indeed · Internal Initiative',
     description:
-      'A hands-on initiative that turned AI curiosity into real capability across teams. Practical workshops, workflow redesign, and measurable behavior change. Evolved from informal sessions into a formal program recognized across the People organization.',
+      'Workshops and hands-on sessions that turned AI curiosity into real capability across teams. Started as informal conversations. Grew into a proper workshop series because people kept showing up and asking for more.',
     // TODO: Replace with real link if/when public
     link: '#',
   },

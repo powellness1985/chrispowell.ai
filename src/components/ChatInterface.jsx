@@ -4,10 +4,10 @@ import ReactMarkdown from 'react-markdown';
 const MAX_CHARS = 500;
 
 const SUGGESTED = [
-  'What makes Chris different from other ops leaders?',
-  'Tell me about his AI work at Indeed',
-  'What does his technical background actually look like?',
-  'What would Chris prioritize in his first 90 days?',
+  'What gets you excited about AI right now?',
+  'How do you approach something you have never done before?',
+  'Why did you build this site?',
+  'What does DadOps do and why did you build it?',
 ];
 
 const markdownComponents = {
@@ -118,9 +118,9 @@ export default function ChatInterface() {
 
   return (
     <section id="chat" className="section">
-      <h2 className="h-section">Ask About Chris</h2>
+      <h2 className="h-section">How I Think</h2>
       <p className="mt-4 sub">
-        Curious about my background, experience, or approach? Ask anything.
+        Curious about how I approach something? Ask me anything.
       </p>
 
       <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
