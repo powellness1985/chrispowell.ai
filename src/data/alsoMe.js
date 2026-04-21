@@ -65,7 +65,7 @@ export const alsoMe = [
   },
   {
     title: 'The Shop',
-    tag: '1,000 sq ft · Fabrication lab · Always growing',
+    tag: 'Shop build · Fabrication · Always growing',
     line: "Dedicated backyard workshop. Electronics bench, fabrication zone, photography staging area. It started as a hobby space. That ship has sailed.",
     imageSlot: 'landscape',
     aspect: 'aspect-video',

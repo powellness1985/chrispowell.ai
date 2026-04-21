@@ -254,24 +254,23 @@ export default function ParticleHero({ onComplete }) {
           {/* Text block */}
           <div className="text-center md:text-left">
             <h1
-              className={`text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-ink leading-tight transition-all duration-700 ease-out ${
+              className={`text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-ink leading-[1.05] transition-all duration-700 ease-out ${
                 revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
               style={d(150)}
             >
-              I don&rsquo;t wait for the future to arrive. I go build it.
+              Same brain.
+              <br />
+              Different materials.
             </h1>
 
             <p
-              className={`mt-4 md:mt-5 text-sm md:text-base text-ink/70 leading-relaxed max-w-xl transition-all duration-700 ease-out ${
+              className={`mt-5 md:mt-6 text-base md:text-lg text-ink/70 leading-relaxed max-w-xl transition-all duration-700 ease-out ${
                 revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
               style={d(350)}
             >
-              Building things excites me. Taking an idea and making it real. Doing something I
-              didn&rsquo;t know how to do before and making it practical. Being able to build
-              something in a night that would have taken me weeks or months before. That gets
-              me going.
+              Operator. Builder. Dad. Always building something.
             </p>
 
             <div className="mt-5 md:mt-6 flex flex-wrap gap-2 justify-center md:justify-start">

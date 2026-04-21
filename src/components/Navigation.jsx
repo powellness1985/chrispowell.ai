@@ -107,7 +107,7 @@ export default function Navigation({ visible = true }) {
           CP.AI
         </a>
 
-        <ul className="hidden md:flex items-center gap-7">
+        <ul className="hidden sm:flex items-center gap-4 md:gap-7">
           {LINKS.map((link) => (
             <li key={link.label}>
               <a
@@ -125,7 +125,7 @@ export default function Navigation({ visible = true }) {
 
         <button
           type="button"
-          className="md:hidden p-2 -mr-2 text-ink/80 hover:text-cyan transition-colors"
+          className="sm:hidden p-2 -mr-2 text-ink/80 hover:text-cyan transition-colors"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
@@ -143,7 +143,7 @@ export default function Navigation({ visible = true }) {
       </nav>
 
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+        className={`sm:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
           mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         } bg-bg/95 backdrop-blur-md border-b border-white/5`}
       >

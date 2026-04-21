@@ -85,28 +85,28 @@ export default function About() {
 
   return (
     <section id="about" ref={rootRef} className="section">
-      <h2 className="h-section">The Arc</h2>
+      <h2 className="h-section">My Story</h2>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         <div className="text-ink/80 text-base md:text-lg leading-relaxed space-y-4">
           <p>
             I&rsquo;m Chris Powell. Coast Guard veteran. Apple Genius. Nearly a decade at Indeed.
-            Single dad to Waverly. Owner of too many cameras and not enough hours in the day.
+            Dad to Waverly. Owner of too many cameras and not enough hours in the day.
           </p>
           <p>
             The through-line across all of it is not the titles or the companies. It is this:
             I ask why things are the way they are, figure out how to make them better for the
             people they affect, and then go build it. At work that looks like AI enablement
-            programs and global operations frameworks. At home it looks like a 1,000 square
-            foot shop, synchronized holiday light shows, projection-mapped Halloween
-            experiences, and a Telegram bot that makes sure I do not miss anything important
-            for Waverly.
+            programs and global operations frameworks. At home it looks like a backyard shop,
+            synchronized holiday light shows, projection-mapped Halloween experiences, and a
+            Telegram bot that makes sure I do not miss anything important for Waverly.
           </p>
-          <p className="text-ink font-semibold">Same brain. Different materials.</p>
+          <p className="text-ink font-semibold">The work is different. The question is always the same.</p>
           <p>
-            I built this site the same way, one evening in Claude Code because the idea excited
-            me and I wanted to see if I could make it real. That is how I have always worked.
-            That is how I always will.
+            This site is my story. I built it one evening in Claude Code because I wanted to
+            try it, do it, and tell my story in my own voice. No ghostwriter, no template,
+            no agenda other than building the thing. That is how I have always worked. That
+            is how I always will.
           </p>
           <p className="text-ink/60 pt-2">
             Curious how I think about something?{' '}
@@ -135,20 +135,22 @@ export default function About() {
             {TIMELINE.map((item, i) => (
               <li
                 key={`${item.year}-${item.org}-${i}`}
-                className={`timeline-item relative ${i === TIMELINE.length - 1 ? '' : 'mb-10'}`}
+                className={`timeline-item relative ${i === TIMELINE.length - 1 ? '' : 'mb-14'}`}
               >
                 <span
-                  className="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-bg border-2 border-cyan shadow-cyan-glow"
+                  className="absolute -left-8 top-2 w-4 h-4 rounded-full bg-bg border-2 border-cyan shadow-cyan-glow"
                   aria-hidden="true"
                 />
-                <div className="text-xs font-mono tracking-wider text-cyan uppercase">
+                <div className="text-sm font-mono tracking-widest text-cyan uppercase">
                   {item.year}
                 </div>
-                <div className="mt-1 text-lg font-semibold text-ink">{item.org}</div>
+                <div className="mt-1 text-xl md:text-2xl font-semibold text-ink tracking-tight">
+                  {item.org}
+                </div>
                 {item.role && (
-                  <div className="text-sm text-ink/70 mt-0.5">{item.role}</div>
+                  <div className="text-sm text-ink/70 mt-1">{item.role}</div>
                 )}
-                <p className="mt-2 text-sm text-ink/60 leading-relaxed">{item.detail}</p>
+                <p className="mt-3 text-sm text-ink/60 leading-relaxed">{item.detail}</p>
               </li>
             ))}
           </ol>

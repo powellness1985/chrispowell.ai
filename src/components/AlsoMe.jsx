@@ -46,7 +46,7 @@ function Card({ item, featured = false }) {
         !isPlaceholder
           ? 'hover:border-cyan/40 hover:-translate-y-1 hover:shadow-cyan-glow'
           : 'hover:border-white/20'
-      } ${featured ? 'md:col-span-2' : ''}`}
+      } ${featured ? 'sm:col-span-2' : ''}`}
     >
       <ImagePlaceholder label={item.imageSlot} aspect={item.aspect} />
 
@@ -81,7 +81,7 @@ export default function AlsoMe() {
         The same curiosity that shows up at work shows up here too.
       </p>
 
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 auto-rows-auto">
         <Card item={featured} featured />
         {rest.map((item) => (
           <Card key={item.title} item={item} />
