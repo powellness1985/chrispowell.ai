@@ -244,7 +244,7 @@ export default function ChatInterface() {
     <section id="chat" className="section">
       <h2 className="h-section">How I Think</h2>
       <p className="mt-4 sub">
-        Curious about how I approach something? Ask me anything.
+        Ask me anything. (Well, AI me.)
       </p>
 
       <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
