@@ -1,8 +1,38 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { SYSTEM_PROMPT } from './system-prompt.js';
 
 const MAX_MESSAGE_CHARS = 500;
 const MAX_HISTORY_TURNS = 4; // last 4 turns = 8 messages
+
+// SYSTEM_PROMPT is loaded from an environment variable, never from a file in
+// the repo. The real prompt is private career content; see
+// api/system-prompt.example.js for the expected structure.
+//
+// Accepts two formats so the workflow is forgiving:
+//   - base64-encoded (recommended for local .env — avoids multi-line quoting)
+//   - plain multi-line text (works in Vercel dashboard, which supports it)
+// If neither looks valid, the request returns a 500 with an explicit message.
+function loadSystemPrompt() {
+  const raw = process.env.SYSTEM_PROMPT || '';
+  if (!raw.trim()) {
+    throw new Error(
+      'SYSTEM_PROMPT is not set. Set it in .env for local dev and in ' +
+        'Vercel > Settings > Environment Variables for production.'
+    );
+  }
+  // Try base64 first.
+  try {
+    const decoded = Buffer.from(raw, 'base64').toString('utf-8');
+    if (decoded.includes('Chris Powell')) return decoded;
+  } catch {
+    /* fall through */
+  }
+  // Plain text (Vercel dashboard accepts multi-line values natively).
+  if (raw.includes('Chris Powell')) return raw;
+  throw new Error(
+    'SYSTEM_PROMPT is set but does not look like the expected prompt ' +
+      '(no identifier found). Check the value.'
+  );
+}
 
 // The system prompt instructs the model to end every reply with a
 // <followups>...</followups> block containing three suggested questions.
@@ -66,11 +96,18 @@ export default async function handler(req, res) {
 
     const client = new Anthropic({ apiKey });
 
+    let systemPrompt;
+    try {
+      systemPrompt = loadSystemPrompt();
+    } catch (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
     const result = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 900,
       temperature: 0.7,
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: [
         ...trimmed.map((m) => ({ role: m.role, content: m.content })),
         { role: 'user', content: message },

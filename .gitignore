@@ -5,3 +5,7 @@ dist
 .DS_Store
 .vercel
 .claude/settings.local.json
+
+# Private: real system prompt contains career content and PII policy.
+# Only the sanitized api/system-prompt.example.js is committed.
+api/system-prompt.js
