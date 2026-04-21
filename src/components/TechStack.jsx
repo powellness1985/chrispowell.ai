@@ -1,4 +1,16 @@
-const TECH = ['React', 'Node.js', 'AWS', 'Leadership', 'Operations', 'AI/ML'];
+const TECH = [
+  'React',
+  'Node.js',
+  'Python',
+  'Claude API',
+  'Databases',
+  'APIs & Integrations',
+  'Automation',
+  'Serverless',
+  'AI/ML',
+  'Leadership',
+  'Operations',
+];
 
 export default function TechStack({ revealContent }) {
   return (

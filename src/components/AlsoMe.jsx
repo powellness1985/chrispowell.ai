@@ -63,6 +63,24 @@ function Card({ item, featured = false }) {
           )}
         </h3>
         <p className="text-sm text-ink/70 leading-relaxed">{item.line}</p>
+        {item.chatPrompt && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              document
+                .getElementById('chat')
+                ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              window.dispatchEvent(
+                new CustomEvent('chat:ask', { detail: { question: item.chatPrompt } })
+              );
+            }}
+            className="mt-2 self-start text-xs font-mono text-cyan/70 hover:text-cyan transition-colors"
+          >
+            Ask the AI →
+          </button>
+        )}
       </div>
     </Tag>
   );

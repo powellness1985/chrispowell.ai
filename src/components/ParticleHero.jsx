@@ -230,7 +230,7 @@ export default function ParticleHero({ onComplete }) {
       />
 
       <div
-        className={`absolute inset-0 z-10 flex items-center justify-center px-6 transition-opacity duration-700 ${
+        className={`absolute inset-0 z-10 flex items-center justify-center px-6 pt-36 lg:pt-0 transition-opacity duration-700 ${
           revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -274,6 +274,15 @@ export default function ParticleHero({ onComplete }) {
               style={d(350)}
             >
               Operator. Builder. Dad. Always building something.
+            </p>
+
+            <p
+              className={`mt-3 text-[11px] md:text-xs font-mono uppercase tracking-[0.2em] text-ink/40 transition-all duration-700 ease-out ${
+                revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+              }`}
+              style={d(450)}
+            >
+              Coast Guard <span className="text-cyan/50">→</span> FAA <span className="text-cyan/50">→</span> Apple <span className="text-cyan/50">→</span> Bypass Mobile <span className="text-cyan/50">→</span> Reaction <span className="text-cyan/50">→</span> Indeed
             </p>
 
             <div className="mt-5 md:mt-6 flex flex-wrap gap-2 justify-center md:justify-start">

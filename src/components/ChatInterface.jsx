@@ -4,14 +4,39 @@ import rehypeSanitize from 'rehype-sanitize';
 
 const MAX_CHARS = 500;
 
-const SUGGESTED = [
-  "What's Chris's take on AI right now?",
-  'How does the maker side connect to leadership?',
-  'What is Powell Family Lights and how does it work?',
-  'What would Chris build with a free weekend?',
-  'Why was this site built?',
-  'Be honest: how many cameras is too many cameras?',
-];
+const AUDIENCES = {
+  Curious: [
+    "What's Chris's take on AI right now?",
+    'How does the maker side connect to leadership?',
+    'What would Chris build with a free weekend?',
+    'Why was this site built?',
+  ],
+  Recruiter: [
+    'Walk me through the career arc from Coast Guard to Indeed.',
+    'What has Chris actually shipped with AI?',
+    'How does Chris lead and grow teams?',
+    'What is Chris looking for next?',
+  ],
+  Engineer: [
+    'How is this site architected, end to end?',
+    'Walk me through how DadOps Bot works.',
+    "What's Chris's AI workflow day to day?",
+    'What is the stack behind Powell Family Lights?',
+  ],
+  Neighbor: [
+    'What is Powell Family Lights and how does it work?',
+    'How does the projection mapping on the house actually work?',
+    'Be honest: how many cameras is too many cameras?',
+    "What's happening at the Powell house this Halloween?",
+  ],
+};
+const AUDIENCE_ORDER = ['Curious', 'Recruiter', 'Engineer', 'Neighbor'];
+const AUDIENCE_LABELS = {
+  Curious: 'Curious',
+  Recruiter: 'a Recruiter',
+  Engineer: 'an Engineer',
+  Neighbor: 'a Neighbor',
+};
 
 const markdownComponents = {
   p: ({ children }) => (
@@ -167,14 +192,35 @@ export default function ChatInterface() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [error, setError] = useState('');
+  const [audience, setAudience] = useState('Curious');
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+  const sendRef = useRef(null);
+  const isTypingRef = useRef(false);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    isTypingRef.current = isTyping;
+  }, [isTyping]);
+
+  useEffect(() => {
+    const onAsk = (e) => {
+      const q = e.detail?.question;
+      if (!q) return;
+      if (isTypingRef.current) {
+        setInput(q);
+        return;
+      }
+      sendRef.current?.(q);
+    };
+    window.addEventListener('chat:ask', onAsk);
+    return () => window.removeEventListener('chat:ask', onAsk);
+  }, []);
 
   const send = async (text) => {
     const trimmed = text.trim();
@@ -224,6 +270,8 @@ export default function ChatInterface() {
     }
   };
 
+  sendRef.current = send;
+
   const onSubmit = (e) => {
     e.preventDefault();
     send(input);
@@ -255,9 +303,28 @@ export default function ChatInterface() {
           {empty && !isTyping && (
             <div className="space-y-2">
               <p className="text-ink/50 mb-3 text-xs font-mono uppercase tracking-wider">
+                I am…
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {AUDIENCE_ORDER.map((a) => (
+                  <button
+                    key={a}
+                    type="button"
+                    onClick={() => setAudience(a)}
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                      audience === a
+                        ? 'border-cyan bg-cyan/15 text-cyan'
+                        : 'border-white/10 text-ink/60 hover:border-cyan/40 hover:text-ink'
+                    }`}
+                  >
+                    {AUDIENCE_LABELS[a]}
+                  </button>
+                ))}
+              </div>
+              <p className="text-ink/50 mb-3 text-xs font-mono uppercase tracking-wider">
                 Try one of these
               </p>
-              {SUGGESTED.map((q) => (
+              {AUDIENCES[audience].map((q) => (
                 <button
                   key={q}
                   type="button"

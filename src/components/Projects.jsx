@@ -52,16 +52,37 @@ function ProjectCard({ p }) {
         }`}
       >
         <p className="text-xs text-cyan/80 mb-2">→ Tap card to close</p>
-        {!isPlaceholder && (
-          <a
-            href={p.link}
-            target={isExternal ? '_blank' : undefined}
-            rel={isExternal ? 'noopener noreferrer' : undefined}
-            className="inline-block mt-2 px-3 py-1.5 rounded-full bg-cyan/20 text-cyan text-xs font-semibold hover:bg-cyan/30 transition-colors"
-          >
-            {isExternal ? 'Visit →' : 'Learn more →'}
-          </a>
-        )}
+        <div className="flex flex-wrap gap-2 mt-2">
+          {p.chatPrompt && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                document
+                  .getElementById('chat')
+                  ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                window.dispatchEvent(
+                  new CustomEvent('chat:ask', { detail: { question: p.chatPrompt } })
+                );
+              }}
+              className="inline-block px-3 py-1.5 rounded-full bg-cyan/20 text-cyan text-xs font-semibold hover:bg-cyan/30 transition-colors"
+            >
+              Ask the AI →
+            </button>
+          )}
+          {isExternal && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-block px-3 py-1.5 rounded-full border border-cyan/40 text-cyan text-xs font-semibold hover:bg-cyan/10 transition-colors"
+            >
+              Visit →
+            </a>
+          )}
+        </div>
       </div>
     </a>
   );

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import ParticleHero from './components/ParticleHero.jsx';
 import Navigation from './components/Navigation.jsx';
+import AlsoMeTeaser from './components/AlsoMeTeaser.jsx';
 import About from './components/About.jsx';
 import Projects from './components/Projects.jsx';
+import BuilderLoop from './components/BuilderLoop.jsx';
 import AlsoMe from './components/AlsoMe.jsx';
 import ChatInterface from './components/ChatInterface.jsx';
 import Footer from './components/Footer.jsx';
@@ -29,8 +31,10 @@ export default function App() {
     <div className="min-h-screen bg-bg text-ink">
       <Navigation visible={heroDone} />
       <ParticleHero onComplete={() => setHeroDone(true)} />
+      <AlsoMeTeaser />
       <About />
       <Projects />
+      <BuilderLoop />
       <AlsoMe />
       <ChatInterface />
       <Footer />
