@@ -87,15 +87,11 @@ export default function TerminalAnimation({ revealContent }) {
     <>
       {/* Desktop: floating terminal top-right */}
       <div
-        className={`hidden lg:block fixed top-16 right-10 z-30 transition-all duration-1000 ${
+        className={`hidden lg:block fixed top-28 right-10 z-20 transition-all duration-1000 ${
           revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        {/* Background box layer - stays behind hero image */}
-        <div className="absolute inset-0 w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 shadow-lg shadow-cyan/10 pointer-events-none z-0" />
-
-        {/* Text content layer - floats above hero image */}
-        <div className="relative z-10 w-72 rounded-lg p-4 font-mono text-sm">
+        <div className="w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-4 font-mono text-sm shadow-lg shadow-cyan/10">
           <div className="flex gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-red-500/70" />
             <div className="w-2 h-2 rounded-full bg-yellow-400/70" />
@@ -118,7 +114,7 @@ export default function TerminalAnimation({ revealContent }) {
 
       {/* Mobile portrait: terminal positioned just under navigation (h-16) */}
       <div
-        className={`lg:hidden landscape:hidden absolute top-[4.5rem] left-6 right-6 z-5 max-w-sm rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
+        className={`lg:hidden landscape:hidden absolute top-[4.5rem] left-6 right-6 z-20 max-w-sm rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
           revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         style={{
