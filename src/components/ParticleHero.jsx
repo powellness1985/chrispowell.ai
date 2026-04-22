@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import TerminalAnimation from './TerminalAnimation';
 import TechStack from './TechStack';
 
 const PILLS = [
@@ -20,24 +19,13 @@ export default function ParticleHero({ onComplete }) {
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
-  const [phase, setPhase] = useState('init'); // init | animating | done
-  const [revealContent, setRevealContent] = useState(false);
-  const [showArrow, setShowArrow] = useState(false);
+  const [phase, setPhase] = useState('done');
+  const [revealContent, setRevealContent] = useState(true);
+  const [showArrow, setShowArrow] = useState(true);
 
-  // Decide what to do on mount: animate or (for reduced-motion users) skip.
+  // Content is revealed immediately; particles animate in background
   useEffect(() => {
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReduced) {
-      setPhase('done');
-      setRevealContent(true);
-      setShowArrow(true);
-      queueMicrotask(() => onCompleteRef.current?.());
-    } else {
-      setPhase('animating');
-    }
+    queueMicrotask(() => onCompleteRef.current?.());
   }, []);
 
   // Animation lifecycle
@@ -222,7 +210,6 @@ export default function ParticleHero({ onComplete }) {
 
   return (
     <section id="top" className="relative min-h-screen overflow-hidden">
-      <TerminalAnimation revealContent={revealContent} />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
@@ -262,9 +249,9 @@ export default function ParticleHero({ onComplete }) {
               }`}
               style={d(150)}
             >
-              I lead people.
+              I translate
               <br />
-              Always learning.
+              technology into business value.
             </h1>
 
             <p
@@ -273,7 +260,7 @@ export default function ParticleHero({ onComplete }) {
               }`}
               style={d(350)}
             >
-              Operator. Builder. Dad. Always building something.
+              20 years across the Coast Guard, FAA, Apple, and Indeed. Today: Director of Workplace AI.
             </p>
 
             <p
