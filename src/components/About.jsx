@@ -9,50 +9,71 @@ const TIMELINE = [
     year: '2003',
     org: 'US Coast Guard',
     role: 'Electronics Technician, E-5',
-    detail:
-      'Honor grad of ET School at 97.5%, top of class. Made E-5 in three years, then filled E-6 and E-7 responsibilities across the Gulf Coast AOR (Pensacola to Corpus Christi). Daily status updates straight to the commanding officer. Supported comms restoration during Hurricane Katrina. Good Conduct Medal. The foundation for everything since.',
+    bullets: [
+      'Honor graduate, top of class. E-5 in three years.',
+      'Gulf Coast AOR: daily briefs to commanding officer.',
+      'Comms restoration lead during Hurricane Katrina.',
+    ],
   },
   {
     year: '2008',
     org: 'Federal Aviation Administration',
     role: 'Airway Transportation Systems Specialist',
-    detail:
-      'Communication and navigational aids for air traffic control. Austin Enroute POC for the National Safety Initiative: coordinated training, PPE procurement, facility inspections, and management briefings. Learned that mission-critical infrastructure is about people and process as much as electronics.',
+    bullets: [
+      'Air traffic control comms & navigation systems.',
+      'National Safety Initiative POC: training, procurement, inspections.',
+      'Learned: infrastructure is people + process + electronics.',
+    ],
   },
   {
     year: '2011',
     org: 'Apple',
     role: 'Mac Genius → Enterprise Advisor',
-    detail:
-      'Advanced quickly from family room specialist to Genius in retail, then moved to AppleCare Enterprise and EDU with OS X Server specialization. Remote phone and screen-share support for enterprise customers. Apple Certified Macintosh Technician. This is where fearless curiosity got wired in.',
+    bullets: [
+      'Retail to AppleCare Enterprise in OS X Server.',
+      'Remote support for enterprise customers.',
+      'Where fearless curiosity became a permanent trait.',
+    ],
   },
   {
     year: '2013',
     org: 'Bypass Mobile',
     role: 'Senior Services Manager',
-    detail:
-      'Built a national support department at a mobile-POS startup. Tablet-based POS at scale: Staples Center, Coachella, PGA events. Project-managed new installs, ran on-call for live events, implemented the ticketing stack. Learned what "on-call" really means when the game starts at 7pm.',
+    bullets: [
+      'Built national support for mobile-POS startup.',
+      'Live events: Staples Center, Coachella, PGA.',
+      'Learned what "on-call" means when the game starts.',
+    ],
   },
   {
     year: '2015',
     org: 'Reaction, Inc.',
     role: 'Desktop Support Lead',
-    detail:
-      'Sole IT lead at a growing startup. Department budget, IT purchasing, licensing administration, security and access control installation, Windows and Mac server admin, ticketing system stand-up. The whole IT org, one chair.',
+    bullets: [
+      'Solo IT lead: budget, procurement, security, infrastructure.',
+      'Windows & Mac server admin, ticketing system.',
+      'The entire IT org, one chair.',
+    ],
   },
   {
     year: '2016',
     org: 'Indeed',
-    role: 'IT Manager → Senior Manager → Director, IT Solutions',
-    detail:
-      'West Coast IT, then APAC with ~4 months on-site rebuilding the Japan team, then Interim Global, then Director of IT Solutions. Led a large global IT org serving ~10,000 employees. Shipped Indeed\'s first internal AI bot, an AI-powered ticketing platform, the first Virtual Service Desk (pandemic-era), and multiple M&A IT integrations. Wrote a bash script for network troubleshooting that is still a standard tool for the team.',
+    role: 'IT Manager → Senior Manager → Director',
+    bullets: [
+      'West Coast, APAC, Interim Global, Director of IT Solutions.',
+      'Led 10,000-employee global IT org.',
+      'Shipped: AI bot, AI ticketing, Virtual Service Desk, M&A integrations.',
+    ],
   },
   {
     year: 'Now',
     org: 'Indeed',
     role: 'Director, Workplace Experience',
-    detail:
-      'People Ops org. A global team of 40+ spanning 20+ offices. Pillars: office ops, events & perks, operational support, HSE, and AI Enablement. Outside the day job: built this site one evening in Claude Code, shipped DadOps Bot for my daughter, run workshops, and lean into whatever comes next. The curiosity never turns off.',
+    bullets: [
+      'Lead 40+ person global team across Ops, Events, Support, HSE, AI.',
+      'Side projects: this site, DadOps Bot, workshops.',
+      'Same curiosity. Different materials.',
+    ],
   },
 ];
 
@@ -150,7 +171,16 @@ export default function About() {
                 {item.role && (
                   <div className="text-sm text-ink/70 mt-1">{item.role}</div>
                 )}
-                <p className="mt-3 text-sm text-ink/60 leading-relaxed">{item.detail}</p>
+                {item.bullets && (
+                  <ul className="mt-3 text-sm text-ink/60 leading-relaxed space-y-1">
+                    {item.bullets.map((bullet, idx) => (
+                      <li key={idx} className="flex gap-2">
+                        <span className="text-amber shrink-0">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ol>
