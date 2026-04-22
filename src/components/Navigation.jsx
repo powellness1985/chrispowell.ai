@@ -107,7 +107,7 @@ export default function Navigation({ visible = true }) {
         </a>
 
         <ul className="hidden sm:flex items-center gap-4 md:gap-7">
-          {LINKS.map((link) => (
+          {LINKS.filter(l => l.label !== 'Contact').map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
@@ -120,6 +120,15 @@ export default function Navigation({ visible = true }) {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="mailto:hello@chrispowell.ai"
+              className="pill ml-2"
+              title="Email Chris"
+            >
+              Get in touch
+            </a>
+          </li>
         </ul>
 
         <button
@@ -147,7 +156,7 @@ export default function Navigation({ visible = true }) {
         } bg-bg/95 backdrop-blur-md border-b border-white/5`}
       >
         <ul className="px-6 py-3">
-          {LINKS.map((link) => (
+          {LINKS.filter(l => l.label !== 'Contact').map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
@@ -160,6 +169,16 @@ export default function Navigation({ visible = true }) {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="mailto:hello@chrispowell.ai"
+              onClick={() => setMobileOpen(false)}
+              className="block py-3 text-base pill inline-block mt-2"
+              title="Email Chris"
+            >
+              Get in touch
+            </a>
+          </li>
         </ul>
       </div>
     </header>

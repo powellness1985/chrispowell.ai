@@ -10,3 +10,4 @@ dist
 # Only the sanitized api/system-prompt.example.js is committed.
 api/system-prompt.js
 SYSTEM_PROMPT_FOR_VERCEL.txt
+.env.bak

@@ -31,12 +31,12 @@ export default function App() {
     <div className="min-h-screen bg-bg text-ink">
       <Navigation visible={heroDone} />
       <ParticleHero onComplete={() => setHeroDone(true)} />
+      <ChatInterface />
       <AlsoMeTeaser />
       <About />
       <Projects />
       <BuilderLoop />
       <AlsoMe />
-      <ChatInterface />
       <Footer />
       <MobileFAB />
     </div>

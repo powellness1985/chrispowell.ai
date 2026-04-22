@@ -244,7 +244,7 @@ export default function ParticleHero({ onComplete }) {
           {/* Text block */}
           <div className="text-center md:text-left">
             <h1
-              className={`text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-ink leading-[1.05] transition-all duration-700 ease-out ${
+              className={`text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-ink leading-[1.05] font-serif transition-all duration-700 ease-out ${
                 revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
               style={d(150)}

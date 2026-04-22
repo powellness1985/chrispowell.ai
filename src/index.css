@@ -87,7 +87,7 @@ html {
   }
 
   .h-section {
-    @apply text-3xl md:text-5xl font-semibold tracking-tight text-ink;
+    @apply text-3xl md:text-5xl font-semibold tracking-tight text-ink font-serif;
   }
 
   .sub {

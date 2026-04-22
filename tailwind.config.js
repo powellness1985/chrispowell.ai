@@ -25,6 +25,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        serif: ['Fraunces', 'Georgia', 'serif'],
       },
       boxShadow: {
         'cyan-glow': '0 0 24px rgba(0, 212, 255, 0.25)',
