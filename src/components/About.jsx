@@ -141,7 +141,7 @@ export default function About() {
                   className="absolute -left-8 top-2 w-4 h-4 rounded-full bg-bg border-2 border-cyan shadow-cyan-glow"
                   aria-hidden="true"
                 />
-                <div className="text-sm font-mono tracking-widest text-cyan uppercase">
+                <div className="text-sm font-mono tracking-widest text-amber uppercase">
                   {item.year}
                 </div>
                 <div className="mt-1 text-xl md:text-2xl font-semibold text-ink tracking-tight">

@@ -8,6 +8,15 @@ export default {
         cyan: {
           DEFAULT: '#00D4FF',
         },
+        amber: {
+          DEFAULT: '#FFB454',
+        },
+        rose: {
+          DEFAULT: '#FF6B8A',
+        },
+        green: {
+          DEFAULT: '#6FE3A5',
+        },
         purple: {
           DEFAULT: '#7B61FF',
         },
