@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import TechStack from './TechStack';
+import TerminalAnimation from './TerminalAnimation';
 
 const PILLS = [
   'Always Learning',
@@ -209,12 +210,14 @@ export default function ParticleHero({ onComplete }) {
   });
 
   return (
-    <section id="top" className="relative min-h-screen overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        aria-hidden="true"
-      />
+    <>
+      <TerminalAnimation revealContent={revealContent} />
+      <section id="top" className="relative min-h-screen overflow-hidden">
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full"
+          aria-hidden="true"
+        />
 
       <div
         className={`absolute inset-0 z-10 flex items-center justify-center px-6 pt-80 lg:pt-48 transition-opacity duration-700 ${
@@ -324,6 +327,7 @@ export default function ParticleHero({ onComplete }) {
           <path d="M5 12l7 7 7-7" />
         </svg>
       </button>
-    </section>
+      </section>
+    </>
   );
 }
