@@ -260,7 +260,7 @@ export default function ParticleHero({ onComplete }) {
               }`}
               style={d(350)}
             >
-              20 years across the Coast Guard, FAA, Apple, and Indeed. Today: Director of Workplace AI.
+              20 years across the Coast Guard, FAA, Apple, and Indeed. Today: AI Champion & Workplace Leader.
             </p>
 
             <p
