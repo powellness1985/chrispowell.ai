@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import TechStack from './TechStack';
-import TerminalAnimation from './TerminalAnimation.jsx';
+import TerminalAnimation from './TerminalAnimation';
 
 const PILLS = [
   'Always Learning',
@@ -15,7 +15,6 @@ const HOLD_MS = 2500;
 const SCATTER_MS = 1400;
 
 export default function ParticleHero({ onComplete }) {
-  console.log('ParticleHero rendered, TerminalAnimation imported:', typeof TerminalAnimation);
   const canvasRef = useRef(null);
   const stopRef = useRef(false);
   const onCompleteRef = useRef(onComplete);

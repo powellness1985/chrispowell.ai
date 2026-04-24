@@ -44,7 +44,6 @@ const HOLD_OUTPUT_MS = 3200;
 const CLEAR_PAUSE_MS = 700;
 
 export default function TerminalAnimation({ revealContent }) {
-  console.log('TerminalAnimation component loaded!', { revealContent });
   const [displayText, setDisplayText] = useState('');
   const [commandIndex, setCommandIndex] = useState(0);
   const [phase, setPhase] = useState('typing'); // 'typing' | 'output' | 'clearing'
