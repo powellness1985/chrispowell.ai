@@ -38,41 +38,65 @@ export default async function handler(req, res) {
 
     // Get questions
     if (type === 'all' || type === 'questions') {
-      const questionsRaw = await kv.lrange('analytics:questions', 0, limit - 1);
-      data.questions = questionsRaw.map(q => JSON.parse(q));
+      try {
+        const questionsRaw = await kv.lrange('analytics:questions', 0, limit - 1);
+        data.questions = (questionsRaw || []).map(q => typeof q === 'string' ? JSON.parse(q) : q);
+      } catch (e) {
+        console.error('Error fetching questions:', e);
+        data.questions = [];
+      }
     }
 
     // Get feedback
     if (type === 'all' || type === 'feedback') {
-      const feedbackRaw = await kv.lrange('analytics:feedback', 0, limit - 1);
-      data.feedback = feedbackRaw.map(f => JSON.parse(f));
+      try {
+        const feedbackRaw = await kv.lrange('analytics:feedback', 0, limit - 1);
+        data.feedback = (feedbackRaw || []).map(f => typeof f === 'string' ? JSON.parse(f) : f);
+      } catch (e) {
+        console.error('Error fetching feedback:', e);
+        data.feedback = [];
+      }
 
-      const flaggedRaw = await kv.lrange('analytics:feedback:flagged', 0, limit - 1);
-      data.flaggedFeedback = flaggedRaw.map(f => JSON.parse(f));
+      try {
+        const flaggedRaw = await kv.lrange('analytics:feedback:flagged', 0, limit - 1);
+        data.flaggedFeedback = (flaggedRaw || []).map(f => typeof f === 'string' ? JSON.parse(f) : f);
+      } catch (e) {
+        console.error('Error fetching flagged feedback:', e);
+        data.flaggedFeedback = [];
+      }
     }
 
     // Get pageviews
     if (type === 'all' || type === 'pageviews') {
-      const pageviewsRaw = await kv.lrange('analytics:pageviews', 0, limit - 1);
-      data.pageviews = pageviewsRaw.map(p => JSON.parse(p));
+      try {
+        const pageviewsRaw = await kv.lrange('analytics:pageviews', 0, limit - 1);
+        data.pageviews = (pageviewsRaw || []).map(p => typeof p === 'string' ? JSON.parse(p) : p);
+      } catch (e) {
+        console.error('Error fetching pageviews:', e);
+        data.pageviews = [];
+      }
     }
 
     // Get visit counts
     if (type === 'all' || type === 'visits') {
-      const visitCounts = {};
-      for (let i = 0; i < 30; i++) {
-        const date = new Date();
-        date.setDate(date.getDate() - i);
-        const dateStr = date.toISOString().split('T')[0];
-        const count = await kv.get(`analytics:visits:${dateStr}`);
-        visitCounts[dateStr] = count ? parseInt(count, 10) : 0;
+      try {
+        const visitCounts = {};
+        for (let i = 0; i < 30; i++) {
+          const date = new Date();
+          date.setDate(date.getDate() - i);
+          const dateStr = date.toISOString().split('T')[0];
+          const count = await kv.get(`analytics:visits:${dateStr}`);
+          visitCounts[dateStr] = count ? parseInt(count, 10) : 0;
+        }
+        data.visitCounts = visitCounts;
+      } catch (e) {
+        console.error('Error fetching visit counts:', e);
       }
-      data.visitCounts = visitCounts;
     }
 
     return res.status(200).json(data);
   } catch (err) {
-    console.error('Analytics error:', err.message);
-    return res.status(500).json({ error: 'Failed to process analytics.' });
+    console.error('Analytics error:', err.message, err.stack);
+    return res.status(500).json({ error: 'Failed to process analytics.', details: err.message });
   }
 }
