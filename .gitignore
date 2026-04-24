@@ -11,3 +11,7 @@ dist
 api/system-prompt.js
 SYSTEM_PROMPT_FOR_VERCEL.txt
 .env.bak
+
+# Private: podcast transcripts for AI context only, not published
+api/transcripts/
+api/context/

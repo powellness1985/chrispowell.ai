@@ -18,11 +18,11 @@ export const projects = [
   },
   {
     title: 'DadOps Bot',
-    tag: 'Personal · Python + Telegram + Claude',
+    tag: 'Personal · Python + Gmail + Claude',
     description:
-      'Personal AI agent. Watches Gmail for family emails → Claude extracts events → Telegram digest → Google Calendar sync. Keeps growing SQLite memory. Built to make sure I never miss anything important.',
-    link: 'https://github.com/chrispowell-ai',
-    chatPrompt: 'How does DadOps Bot work? Walk me through the Gmail → Claude → Telegram → Calendar flow.',
+      'Personal operations assistant running locally on my machine. Watches Gmail for family emails → Claude extracts context → syncs to Google Calendar with safety-first design (never sends email, never deletes, never creates events without confirmation). Built to make sure I never miss what matters.',
+    link: null,
+    chatPrompt: 'How does DadOps Bot work? What\'s the Gmail → Claude → Calendar flow?',
   },
   {
     title: 'Proactive AI Enablement',
@@ -39,6 +39,22 @@ export const projects = [
       'Dedicated backyard workshop. Electronics bench, fabrication zone, photography staging. Started as hobby space. Now a full production facility for lights, prints, and experiments.',
     link: '#also-me',
     chatPrompt: "Walk me through Chris's shop — what's in it, what does he build there?",
+  },
+  {
+    title: 'UnicornLand',
+    tag: 'Live · Game Design + Kaboom.js',
+    description:
+      'Game co-designed with a creative collaborator, built on Kaboom.js. No losing states, no pressure — just encouragement and play. Designed to make building together fun and welcoming.',
+    link: 'https://unicornland.chrispowell.ai',
+    chatPrompt: 'Tell me about UnicornLand — how was it designed, what makes it different?',
+  },
+  {
+    title: 'image-forge',
+    tag: 'Live · Python + OpenAI API',
+    description:
+      'Batch AI image generation tool using DALL-E 3 with Pillow and background removal. Built to generate assets for other projects and automate repetitive image creation workflows. CLI-based, open source.',
+    link: 'https://github.com/chrispowell-ai/image-forge',
+    chatPrompt: 'How does image-forge work? Walk me through the DALL-E 3 → Pillow → rembg pipeline.',
   },
   {
     title: 'Making the Darkness Conscious',
