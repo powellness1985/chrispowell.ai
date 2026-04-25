@@ -63,13 +63,14 @@ export default function ParticleHero({ onComplete }) {
     const ctx = canvas.getContext('2d');
     ctx.scale(DPR, DPR);
 
-    const FONT_SIZE = 14;
+    const FONT_SIZE = 12;
     const COL_COUNT = Math.ceil(W / FONT_SIZE);
 
+    // Start all columns already mid-screen so the wall fills instantly
     const drops = Array.from({ length: COL_COUNT }, () =>
-      -Math.floor(Math.random() * (H / FONT_SIZE))
+      -Math.floor(Math.random() * (H / FONT_SIZE) * 0.4)
     );
-    const speeds = Array.from({ length: COL_COUNT }, () => 0.4 + Math.random() * 0.9);
+    const speeds = Array.from({ length: COL_COUNT }, () => 0.6 + Math.random() * 1.1);
 
     const startTime = performance.now();
     let frozen = false;
@@ -86,8 +87,8 @@ export default function ParticleHero({ onComplete }) {
         return;
       }
 
-      // Trail fade
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.18)';
+      // Trail fade — lower alpha = trails linger longer = denser wall
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.12)';
       ctx.fillRect(0, 0, W, H);
 
       ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
@@ -99,27 +100,27 @@ export default function ParticleHero({ onComplete }) {
         const x = i * FONT_SIZE;
         const y = drop * FONT_SIZE;
 
-        // Lead character — bright near-white
+        // Lead character — bright near-white with cyan glow
         ctx.shadowColor = '#00D4FF';
-        ctx.shadowBlur  = 8;
+        ctx.shadowBlur  = 6;
         ctx.fillStyle   = '#e0ffff';
         ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y);
         ctx.shadowBlur = 0;
 
-        // Trail
-        const trailLen = 8 + Math.floor(Math.random() * 6);
+        // Long trail — fills most of the column height
+        const trailLen = 22 + Math.floor(Math.random() * 12);
         for (let t = 1; t <= trailLen; t++) {
           const ty = y - t * FONT_SIZE;
           if (ty < 0) break;
           const alpha = Math.max(0, 1 - t / trailLen);
-          ctx.fillStyle = t < 3
-            ? `rgba(0,212,255,${alpha * 0.9})`
-            : `rgba(0,160,180,${alpha * 0.45})`;
+          ctx.fillStyle = t < 4
+            ? `rgba(0,212,255,${alpha * 0.95})`
+            : `rgba(0,180,200,${alpha * 0.55})`;
           ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, ty);
         }
 
         drops[i] += speeds[i];
-        if (y > H + FONT_SIZE * 20) drops[i] = -Math.floor(Math.random() * 10);
+        if (y > H + FONT_SIZE * 5) drops[i] = -Math.floor(Math.random() * 6);
       }
 
       animId = requestAnimationFrame(draw);
