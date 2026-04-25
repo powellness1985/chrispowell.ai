@@ -291,6 +291,22 @@ export default function ParticleHero({ onComplete }) {
               ))}
             </div>
             <TechStack revealContent={revealContent} />
+
+            {/* Conversation status badge */}
+            <div
+              className={`mt-5 inline-flex items-center gap-2 transition-all duration-700 ease-out ${
+                revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+              }`}
+              style={{ transitionDelay: revealContent ? '950ms' : '0ms' }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan" />
+              </span>
+              <span className="text-xs font-mono text-ink/50 tracking-wide">
+                Always open for a conversation
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,9 @@
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { alsoMe } from '../data/alsoMe.js';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Placeholder for image slots until real photos are dropped in.
 // TODO: replace per-card with actual imagery; dimensions noted per card
@@ -42,7 +47,7 @@ function Card({ item, featured = false }) {
   return (
     <Tag
       {...linkProps}
-      className={`group relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 no-underline ${
+      className={`alsome-card group relative flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all duration-300 no-underline ${
         !isPlaceholder
           ? 'hover:border-cyan/40 hover:-translate-y-1 hover:shadow-cyan-glow'
           : 'hover:border-white/20'
@@ -88,9 +93,30 @@ function Card({ item, featured = false }) {
 
 export default function AlsoMe() {
   const [featured, ...rest] = alsoMe;
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.alsome-card').forEach((el, i) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 30,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: (i % 3) * 0.1,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+    }, rootRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="also-me" className="section">
+    <section id="also-me" ref={rootRef} className="section">
       <h2 className="h-section">Also Me</h2>
       <p className="mt-4 sub">When there&rsquo;s no agenda, this is what happens.</p>
       <p className="mt-2 text-sm text-ink/50">

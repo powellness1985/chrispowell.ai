@@ -11,11 +11,11 @@ const AUDIENCES = {
     'What would Chris build with a free weekend?',
     'Why was this site built?',
   ],
-  Recruiter: [
+  Connect: [
     'Walk me through the career arc from Coast Guard to Indeed.',
     'What has Chris actually shipped with AI?',
     'How does Chris lead and grow teams?',
-    'What is Chris looking for next?',
+    'What kind of work energizes Chris most?',
   ],
   Engineer: [
     'How is this site architected, end to end?',
@@ -30,10 +30,10 @@ const AUDIENCES = {
     "What's happening at the Powell house this Halloween?",
   ],
 };
-const AUDIENCE_ORDER = ['Curious', 'Recruiter', 'Engineer', 'Neighbor'];
+const AUDIENCE_ORDER = ['Curious', 'Connect', 'Engineer', 'Neighbor'];
 const AUDIENCE_LABELS = {
   Curious: 'Just Curious',
-  Recruiter: 'a Recruiter',
+  Connect: "Let's Connect",
   Engineer: 'an Engineer',
   Neighbor: 'a Neighbor',
 };

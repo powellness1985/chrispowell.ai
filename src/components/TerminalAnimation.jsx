@@ -16,18 +16,26 @@ const COMMANDS = [
   { cmd: 'man chris', out: 'SYNOPSIS: operator [--curious] [--direct] [--warm]' },
   { cmd: 'history | grep "learned"', out: '1,247 results found (still counting)' },
   { cmd: 'sudo stay-curious', out: 'permission granted. always.' },
-  { cmd: 'git log --oneline', out: 'feat: built trust with the skeptical stakeholder' },
-  { cmd: 'ls ~/projects', out: 'proptech/  chrispowell.ai/  laser-engraver/  a-good-life/' },
-  { cmd: 'brew install hobbies', out: 'installing: engraving, storytelling, long walks...' },
+  { cmd: 'git log --oneline -6', out: 'a3f91c2 led 40-person global team across ops, events, AI
+b8d04e1 built ai compliance tool — caught what manual review missed
+c2a17f3 opened 3 offices from the ground up
+d9e82b0 restored comms during hurricane katrina
+e4c55a9 apple genius → enterprise advisor
+f1b3310 honor grad, e-5 in three years' },
+  { cmd: 'ls ~/projects', out: 'dadops-bot/  unicornland/  family-lights/  image-forge/  chrispowell.ai/' },
+  { cmd: 'brew install hobbies', out: 'installing: projection-mapping, laser-engraving, photography, 3d-printing...' },
   { cmd: 'crontab -l', out: '17:00 * * * dad-mode --fully-present' },
   { cmd: 'echo $VALUES', out: 'authenticity, curiosity, leaning in' },
   { cmd: './run-the-meeting.sh', out: "agenda loaded. ego check: passed. let's go." },
   { cmd: 'cat story.md', out: '# loved deeply. lost. love again. keep building.' },
-  { cmd: 'cat about.md', out: '# widowed dad rebuilding with intention' },
   { cmd: './both-things.sh', out: 'grief and hope. foundation and new growth. running.' },
-  { cmd: 'whoami --verbose', out: 'chris powell // operator // widowed dad // always learning' },
+  { cmd: 'git log --oneline -4', out: 'a1b2c3d shipped ai workshop series — people showed up
+e5f6a7b built dadops bot so i never miss what matters
+c8d9e0f projection-mapped the house. synced to music.
+1a2b3c4 still becoming. on purpose.' },
   { cmd: 'npm run life', out: '→ raising waverly, leading teams, building things' },
-  { cmd: 'git status', out: 'on branch: chapter-two\nchanges staged: intentional, curious, open' },
+  { cmd: 'git status', out: 'on branch: chapter-two
+changes staged: intentional, curious, open' },
   { cmd: 'cat now.md', out: '# leading, building, parenting, growing — in that order and all at once' },
   { cmd: './trust-gut.sh', out: 'overthinking.exe terminated. proceeding.' },
   { cmd: 'ls ~/values', out: 'empathy/  curiosity/  directness/  warmth/  leaning-in/' },
@@ -36,6 +44,11 @@ const COMMANDS = [
   { cmd: './heavy-joy.sh', out: 'finding beauty inside the hard stuff. always.' },
   { cmd: 'sudo show-up', out: 'authenticated. fully present.' },
   { cmd: 'whoami', out: 'chris // always becoming, never finished' },
+  { cmd: 'git log --format="%s" --author="chris" | head -5', out: 'translate technology into business value
+lead with empathy through real change
+build things that actually help people
+hand it off and help the next person grow
+start over. better this time.' },
 ];
 
 const TYPE_DELAY_MS = 65;
