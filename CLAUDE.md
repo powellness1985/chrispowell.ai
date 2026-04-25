@@ -7,7 +7,7 @@ Personal portfolio site for Chris Powell built with React, Vite, Tailwind, and C
 - **src/components/** — React components (ParticleHero, About, Projects, AlsoMe, Chat, Navigation, Footer)
 - **src/data/** — Data files (projects.js, alsoMe.js)
 - **api/** — Vercel serverless function for chat backend
-- **public/** — Static assets (headshot.jpg, favicon)
+- **public/** — Static assets (headshot.webp, favicon) — headshot converted from .jpg to .webp Apr 2026 (61% smaller)
 
 ## Development
 ```bash
@@ -20,6 +20,12 @@ npm run build  # Production build — always run before pushing to catch build e
 - **Spacing/layout:** Tailwind, max-width 6xl containers, consistent padding
 - **Components:** Use existing pill, card, btn-ghost, section, h-section, sub classes from index.css
 - **Typography:** Inter (body), JetBrains Mono (code/terminal), Fraunces (serif headings)
+
+## Changelog
+- **ad32243** (Apr 2026) — Full site update: 22 years (was 20), Tokyo/proposal terminal line, FAA NSI POC line, mentorship line, 3 new AI portfolio projects (Adoption Insights, Ticket Analytics, Compliance Tool), Girl Dad card in AlsoMe, Photography+Drone update, CNC card from planning to active, headshot.jpg → headshot.webp
+- **a40b024** (Apr 2026) — Matrix rain: denser columns, longer trails, fuller wall of text
+- **016570e** (Apr 2026) — Terminal: floating widget desktop/iPad, inline mobile
+- **4cda093** (Apr 2026) — Glitch: scan line tear (seizure-safe), replaced flash/white-fill events
 
 ## Code Conventions
 - No comments unless WHY is non-obvious
