@@ -9,7 +9,7 @@ const STEPS = [
   { n: '02', title: 'Learn by doing', sub: 'Read, prototype, break things, keep going.' },
   { n: '03', title: 'Prove it', sub: 'Ship the thing. Put it in people\u2019s hands.' },
   { n: '04', title: 'Hand it off', sub: 'Give it to the team who owns the domain.' },
-  { n: '05', title: 'Help people grow', sub: 'The change matters as much as the change.' },
+  { n: '05', title: 'Help people grow', sub: 'The person matters as much as the outcome.' },
 ];
 
 export default function BuilderLoop() {

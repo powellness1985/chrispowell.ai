@@ -50,7 +50,7 @@ export const alsoMe = [
     tag: 'Podcast · Audio · Storytelling',
     line: "A podcast about grief, recovery, parenting, and what Jung called making the darkness conscious. Voice-first, unpolished by design, honest by necessity.",
     // TODO: replace with real podcast URL once published
-    link: '#',
+    link: null,
     imageSlot: 'square',
     aspect: 'aspect-square',
     chatPrompt: "What is the 'Making the Darkness Conscious' podcast about, and why is Chris making it?",
@@ -70,5 +70,14 @@ export const alsoMe = [
     imageSlot: 'landscape',
     aspect: 'aspect-video',
     chatPrompt: "What is Chris planning with CNC and woodworking, and why is it on the roadmap?",
+  },
+  {
+    title: 'UnicornLand',
+    tag: 'Game Design · Kaboom.js · Play',
+    line: "A browser game co-designed with a creative collaborator. No losing states, no pressure, just encouragement and play. Built to make building together feel fun and safe. Same brain, different materials.",
+    link: 'https://unicornland.chrispowell.ai',
+    imageSlot: 'landscape',
+    aspect: 'aspect-video',
+    chatPrompt: 'Tell me about UnicornLand — how was it designed, what makes it different from other games?',
   },
 ];

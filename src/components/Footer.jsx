@@ -38,7 +38,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-white/5 text-center text-xs text-ink/40">
-          Built by Chris Powell · Always learning, always building · chrispowell.ai
+          Built by Chris Powell · Always learning, always building ·{' '}
+          <a href="https://chrispowell.ai" className="hover:text-cyan transition-colors">chrispowell.ai</a>
+          {' '}· © {new Date().getFullYear()}
         </div>
       </div>
     </footer>
