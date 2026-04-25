@@ -122,6 +122,16 @@ export default function Navigation({ visible = true }) {
           ))}
           <li>
             <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm tracking-tight transition-colors text-ink/70 hover:text-ink"
+            >
+              Resume
+            </a>
+          </li>
+          <li>
+            <a
               href="mailto:hello@chrispowell.ai"
               className="pill ml-2"
               title="Email Chris"
@@ -169,6 +179,17 @@ export default function Navigation({ visible = true }) {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="block py-3 text-base text-ink/70 hover:text-ink transition-colors"
+            >
+              Resume
+            </a>
+          </li>
           <li>
             <a
               href="mailto:hello@chrispowell.ai"
