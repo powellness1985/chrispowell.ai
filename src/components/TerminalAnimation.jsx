@@ -112,31 +112,31 @@ export default function TerminalAnimation({ revealContent }) {
         </div>
       </div>
 
-      {/* Mobile portrait: terminal positioned just under navigation (h-16) */}
+      {/* Mobile: small terminal at bottom of screen, out of hero content way */}
       <div
-        className={`lg:hidden landscape:hidden absolute top-[4.5rem] left-6 right-6 z-20 max-w-sm rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-3 font-mono text-xs transition-all duration-1000 ${
+        className={`lg:hidden fixed bottom-20 left-4 right-4 z-20 max-w-xs rounded-lg bg-black/60 backdrop-blur border border-cyan/20 p-2.5 font-mono text-[10px] transition-all duration-700 ${
           revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
         style={{
-          transitionDelay: revealContent ? '800ms' : '0ms',
+          transitionDelay: revealContent ? '1000ms' : '0ms',
         }}
       >
-        <div className="flex gap-1.5 mb-2">
+        <div className="flex gap-1 mb-1.5">
           <div className="w-1.5 h-1.5 rounded-full bg-red-500/70" />
           <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/70" />
           <div className="w-1.5 h-1.5 rounded-full bg-green-500/70" />
         </div>
-        <div className="text-cyan/80 text-[10px] mb-1">~/projects</div>
-        <div className="text-cyan flex items-center">
-          <span>$ {displayText}</span>
-          {isTypingCursor && <span className="ml-1 animate-pulse">_</span>}
+        <div className="text-cyan/60 text-[9px] mb-1">~/projects</div>
+        <div className="text-cyan flex items-center truncate">
+          <span className="truncate">$ {displayText}</span>
+          {isTypingCursor && <span className="ml-0.5 animate-pulse flex-shrink-0">_</span>}
         </div>
         <div
-          className={`mt-1 text-ink/70 text-[10px] whitespace-pre-line leading-relaxed min-h-[1rem] transition-opacity duration-200 ${
+          className={`mt-1 text-ink/60 text-[9px] leading-relaxed min-h-[0.875rem] transition-opacity duration-200 line-clamp-2 ${
             showOutput ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {showOutput ? current.out : '\u00a0'}
+          {showOutput ? current.out.split('\n')[0] : '\u00a0'}
         </div>
       </div>
     </>

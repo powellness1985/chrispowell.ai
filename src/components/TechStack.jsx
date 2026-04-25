@@ -14,7 +14,7 @@ const TECH = [
 
 export default function TechStack({ revealContent }) {
   return (
-    <div className={`mt-8 md:mt-10 transition-all duration-1000 ${
+    <div className={`mt-5 md:mt-8 transition-all duration-1000 ${
       revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
     }`}>
       <div className="text-xs font-mono text-ink/50 uppercase tracking-widest mb-3">Stack</div>
