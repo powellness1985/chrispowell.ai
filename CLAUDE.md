@@ -46,6 +46,17 @@ npm run build  # Production build — always run before pushing to catch build e
 - Push after each logical unit of work
 
 ## Change Log
+### 2026-04-25 — Scan line tear glitch (Perplexity Computer session)
+**Intro Animation — glitch transition rewrite (ParticleHero.jsx)**
+- Replaced flash-based glitch with a seizure-safe **scan line tear** transition:
+  - Rain freezes → 18 horizontal bands begin shearing left/right (VHS mistrack feel)
+  - Chromatic aberration (red/blue pixel offset) drifts in and grows across the 1200ms window
+  - Bands progressively drop out to background color — no brightness events
+  - Canvas fades to black via CSS `opacity` transition (300ms) — zero strobing
+  - Site content already loaded underneath; particle burst fires as final punctuation
+- `GLITCH_DURATION` extended from 900ms → 1200ms to give the tear more room to develop
+- All `flash` and white-fill events removed — no `rgba(255,255,255,...)` draws anywhere
+
 ### 2026-04-25 (Perplexity Computer session)
 **Intro Animation — complete rewrite (ParticleHero.jsx)**
 - Replaced the previous slow particle-assembly intro (was disabled/skipped by default) with a new two-phase cinematic intro:
