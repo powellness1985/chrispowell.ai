@@ -43,16 +43,16 @@ const PAUSE_BEFORE_OUTPUT_MS = 350;
 const HOLD_OUTPUT_MS = 3200;
 const CLEAR_PAUSE_MS = 700;
 
-export default function TerminalAnimation({ revealContent }) {
+// Shared hook — drives the typewriter state
+function useTerminal(revealContent) {
   const [displayText, setDisplayText] = useState('');
   const [commandIndex, setCommandIndex] = useState(0);
-  const [phase, setPhase] = useState('typing'); // 'typing' | 'output' | 'clearing'
+  const [phase, setPhase] = useState('typing');
 
   const current = COMMANDS[commandIndex % COMMANDS.length];
 
   useEffect(() => {
     if (!revealContent) return undefined;
-
     let timeoutId;
 
     if (phase === 'typing') {
@@ -61,14 +61,10 @@ export default function TerminalAnimation({ revealContent }) {
           setDisplayText(current.cmd.slice(0, displayText.length + 1));
         }, TYPE_DELAY_MS);
       } else {
-        timeoutId = setTimeout(() => {
-          setPhase('output');
-        }, PAUSE_BEFORE_OUTPUT_MS);
+        timeoutId = setTimeout(() => setPhase('output'), PAUSE_BEFORE_OUTPUT_MS);
       }
     } else if (phase === 'output') {
-      timeoutId = setTimeout(() => {
-        setPhase('clearing');
-      }, HOLD_OUTPUT_MS);
+      timeoutId = setTimeout(() => setPhase('clearing'), HOLD_OUTPUT_MS);
     } else {
       timeoutId = setTimeout(() => {
         setDisplayText('');
@@ -80,65 +76,82 @@ export default function TerminalAnimation({ revealContent }) {
     return () => clearTimeout(timeoutId);
   }, [phase, displayText, revealContent, current.cmd]);
 
+  return { displayText, current, phase };
+}
+
+// ── Desktop / iPad: floating widget (lg+) ───────────────────────────────────
+export default function TerminalAnimation({ revealContent }) {
+  const { displayText, current, phase } = useTerminal(revealContent);
   const showOutput = phase === 'output' || phase === 'clearing';
   const isTypingCursor = phase === 'typing';
 
   return (
-    <>
-      {/* Desktop: floating terminal top-right */}
-      <div
-        className={`hidden lg:block fixed top-28 right-10 z-20 transition-all duration-1000 ${
-          revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-4 font-mono text-sm shadow-lg shadow-cyan/10">
-          <div className="flex gap-2 mb-3">
-            <div className="w-2 h-2 rounded-full bg-red-500/70" />
-            <div className="w-2 h-2 rounded-full bg-yellow-400/70" />
-            <div className="w-2 h-2 rounded-full bg-green-500/70" />
-          </div>
-          <div className="text-cyan/80 text-xs mb-2">~/projects</div>
-          <div className="text-cyan min-h-6 flex items-center">
-            <span>$ {displayText}</span>
-            {isTypingCursor && <span className="ml-1 animate-pulse">_</span>}
-          </div>
-          <div
-            className={`mt-2 text-ink/70 text-xs whitespace-pre-line leading-relaxed min-h-[1.5rem] transition-opacity duration-200 ${
-              showOutput ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            {showOutput ? current.out : '\u00a0'}
-          </div>
+    <div
+      className={`hidden lg:block fixed top-28 right-10 z-20 transition-all duration-1000 ${
+        revealContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
+      <div className="w-72 rounded-lg bg-black/40 backdrop-blur border border-cyan/30 p-4 font-mono text-sm shadow-lg shadow-cyan/10">
+        <div className="flex gap-2 mb-3">
+          <div className="w-2 h-2 rounded-full bg-red-500/70" />
+          <div className="w-2 h-2 rounded-full bg-yellow-400/70" />
+          <div className="w-2 h-2 rounded-full bg-green-500/70" />
         </div>
-      </div>
-
-      {/* Mobile: small terminal at bottom of screen, out of hero content way */}
-      <div
-        className={`lg:hidden fixed bottom-20 left-4 right-4 z-20 max-w-xs rounded-lg bg-black/60 backdrop-blur border border-cyan/20 p-2.5 font-mono text-[10px] transition-all duration-700 ${
-          revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
-        style={{
-          transitionDelay: revealContent ? '1000ms' : '0ms',
-        }}
-      >
-        <div className="flex gap-1 mb-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-red-500/70" />
-          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/70" />
-          <div className="w-1.5 h-1.5 rounded-full bg-green-500/70" />
-        </div>
-        <div className="text-cyan/60 text-[9px] mb-1">~/projects</div>
-        <div className="text-cyan flex items-center truncate">
-          <span className="truncate">$ {displayText}</span>
-          {isTypingCursor && <span className="ml-0.5 animate-pulse flex-shrink-0">_</span>}
+        <div className="text-cyan/80 text-xs mb-2">~/projects</div>
+        <div className="text-cyan min-h-6 flex items-center">
+          <span>$ {displayText}</span>
+          {isTypingCursor && <span className="ml-1 animate-pulse">_</span>}
         </div>
         <div
-          className={`mt-1 text-ink/60 text-[9px] leading-relaxed min-h-[0.875rem] transition-opacity duration-200 line-clamp-2 ${
+          className={`mt-2 text-ink/70 text-xs whitespace-pre-line leading-relaxed min-h-[1.5rem] transition-opacity duration-200 ${
             showOutput ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {showOutput ? current.out.split('\n')[0] : '\u00a0'}
+          {showOutput ? current.out : '\u00a0'}
         </div>
       </div>
-    </>
+    </div>
+  );
+}
+
+// ── Mobile: inline in-flow terminal (below stack, above status badge) ────────
+export function TerminalInline({ revealContent }) {
+  const { displayText, current, phase } = useTerminal(revealContent);
+  const showOutput = phase === 'output' || phase === 'clearing';
+  const isTypingCursor = phase === 'typing';
+
+  return (
+    <div
+      className={`lg:hidden w-full rounded-lg bg-black/50 backdrop-blur border border-cyan/25 p-3 font-mono transition-all duration-700 shadow-md shadow-cyan/5 ${
+        revealContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+      }`}
+      style={{ transitionDelay: revealContent ? '700ms' : '0ms' }}
+    >
+      {/* Traffic lights + path */}
+      <div className="flex items-center gap-2 mb-2">
+        <div className="flex gap-1.5">
+          <div className="w-2 h-2 rounded-full bg-red-500/70" />
+          <div className="w-2 h-2 rounded-full bg-yellow-400/70" />
+          <div className="w-2 h-2 rounded-full bg-green-500/70" />
+        </div>
+        <span className="text-cyan/50 text-[10px] ml-1">~/projects</span>
+      </div>
+
+      {/* Command line */}
+      <div className="text-cyan text-xs flex items-center">
+        <span className="mr-1">$</span>
+        <span className="truncate">{displayText}</span>
+        {isTypingCursor && <span className="ml-0.5 animate-pulse flex-shrink-0">_</span>}
+      </div>
+
+      {/* Output */}
+      <div
+        className={`mt-1.5 text-ink/60 text-[11px] leading-relaxed whitespace-pre-line line-clamp-2 transition-opacity duration-200 ${
+          showOutput ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {showOutput ? current.out.split('\n')[0] : '\u00a0'}
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import TechStack from './TechStack';
-import TerminalAnimation from './TerminalAnimation';
+import TerminalAnimation, { TerminalInline } from './TerminalAnimation';
 
 const PILLS = [
   'Always Learning',
@@ -476,6 +476,11 @@ export default function ParticleHero({ onComplete }) {
               </div>
 
               <TechStack revealContent={revealContent} />
+
+              {/* Inline terminal — mobile only (lg+ uses floating widget) */}
+              <div className="mt-4">
+                <TerminalInline revealContent={revealContent} />
+              </div>
 
               {/* Status badge */}
               <div
