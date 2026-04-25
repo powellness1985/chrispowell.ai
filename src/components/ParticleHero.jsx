@@ -415,7 +415,7 @@ export default function ParticleHero({ onComplete }) {
               <div className="absolute -inset-2 rounded-full bg-cyan/20 blur-2xl" aria-hidden="true" />
               <div className="relative w-32 sm:w-44 md:w-60 aspect-square rounded-full overflow-hidden border-2 border-cyan/40 shadow-cyan-glow-lg bg-bg">
                 <img
-                  src="/headshot.jpg"
+                  src="/headshot.webp"
                   alt="Chris Powell"
                   className="w-full h-full object-cover"
                   loading="eager"
@@ -444,7 +444,7 @@ export default function ParticleHero({ onComplete }) {
                 }`}
                 style={d(350)}
               >
-                20 years across the Coast Guard, FAA, Apple, and Indeed. Today: AI Champion & Workplace Leader.
+                22 years across the Coast Guard, FAA, Apple, and Indeed. Today: AI Champion & Workplace Leader.
               </p>
 
               <p

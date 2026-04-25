@@ -28,9 +28,33 @@ export const projects = [
     title: 'Proactive AI Enablement',
     tag: 'Indeed · Workshops + Training',
     description:
-      'Hands-on workshops that turned AI curiosity into real team capability. Started as conversations, grew into a workshop series because people kept showing up. Now a sustained program.',
+      'Hands-on workshops that turned AI curiosity into real team capability. Started as conversations, grew into a sustained biweekly program. Prompt engineering for non-technical teams — because the tools only matter if people actually use them.',
     link: 'https://indeed.com',
     chatPrompt: 'What does Chris do in the AI enablement workshops, and how did they turn into a real program?',
+  },
+  {
+    title: 'AI Adoption Executive Insights',
+    tag: 'Indeed · Research · 400+ C-Suite',
+    description:
+      'Surveyed 400+ C-suite executives to understand how AI adoption is actually happening at the top. Built to inform strategy — not just report on trends, but identify where leadership mindsets are the real bottleneck.',
+    link: null,
+    chatPrompt: 'Tell me about the AI adoption research Chris did — what did surveying 400+ executives reveal?',
+  },
+  {
+    title: 'Support Ticket Analytics',
+    tag: 'Indeed · Data · Self-Service',
+    description:
+      'Analyzed support ticket patterns across the global org and identified 40%+ of volume had self-service potential. Turned the data into a roadmap for reducing load on the team without reducing quality of support.',
+    link: null,
+    chatPrompt: 'Walk me through the support ticket analytics project — how did Chris find 40% self-service potential?',
+  },
+  {
+    title: 'AI Compliance Tool',
+    tag: 'Indeed · AI · Ops',
+    description:
+      'Built an AI-enabled compliance tool that caught issues manual review consistently missed. The kind of thing that makes you realize the bottleneck was never the data — it was the bandwidth to look at it right.',
+    link: null,
+    chatPrompt: 'How did Chris build the AI compliance tool, and what did it catch that manual review missed?',
   },
   {
     title: 'The Shop',
